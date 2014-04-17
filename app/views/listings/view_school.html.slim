@@ -1,0 +1,36 @@
+.container
+	= render 'school_header', school: @school
+	.row
+		.span12#map_container
+			#bigmap_canvas.img-polaroid.google-maps
+			= render 'layouts/bigmap'
+			#bigmap_filter_box
+				.bigmap_filter_content
+					h5 Legend:
+				.bigmap_filter_content
+					#bigmap_filter_rental_icon
+				.bigmap_filter_content
+					p Rentals
+				.bigmap_filter_content
+					#bigmap_filter_sublet_icon
+				.bigmap_filter_content
+					p Sublets
+	.row
+		.span4
+			= link_to view_properties_url(school_code: @school.code, property_type:'rentals', include_graduate: "true") do
+				h5.new_see_all See All
+				h3.new_category Rentals
+			- for rental in @new_rentals do
+				= render 'school_listing', rental: rental, school: @school
+		.span4
+			= link_to view_properties_url(school_code: @school.code, property_type:'sublets') do
+				h5.new_see_all See All
+				h3.new_category Sublets
+			- for sublet in @new_sublets do
+				= render 'school_listing', rental: sublet, school: @school
+		.span4
+			= link_to view_marketplace_url(school_code: @school.code) do
+				h5.new_see_all See All
+				h3.new_category Marketplace
+			- for item in @new_marketplace do
+				= render 'school_item', item: item

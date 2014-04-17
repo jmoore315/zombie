@@ -1,0 +1,107 @@
+.container
+	.well
+		p This page contains a list of every school uhoused is active at
+		ul
+		- for school in @schools do
+			li = link_to school.name, school_home_url(school.code)
+	.well.landlord-table
+		table.table.table-condensed
+			tr
+				th 
+				th Landlord
+				th # Active Listings
+			tr
+				td 1
+				td
+					a#linkyo href="#" Example properties
+				td 23 listings
+				td 
+					button.btn.btn-primary Message
+				td
+					button.btn.btn-danger Ban
+			tr.inner-table#inner-table-1.hide
+				td colspan="5"
+					table.table
+						tr
+							td 
+								a 2420 Campus drive
+							td 2BR/3BTH
+							td colspan="3" Activated 9/20
+						tr
+							td 
+								a 2151 Ridge
+							td 2BR/3BTH
+							td colspan="3" Activated 9/21
+						tr
+							td 
+								a 919 Clark
+							td 2BR/3BTH
+							td colspan="3" Activated 2/31
+			tr
+				td 2
+				td Soundview apts
+				td 20 listings
+				td 
+					button.btn.btn-primary Message
+				td
+					button.btn.btn-danger Ban
+			tr.inner-table#inner-table-2.hide
+				td colspan="5"
+					table.table
+						tr
+							td 2420 Campus drive
+							td Activated 9/20
+						tr
+							td 2151 Ridge
+							td Activated 9/21
+						tr
+							td 919 Clark
+							td Activated 2/31
+			tr
+				td 3
+				td Fineliving
+				td 19 listings
+				td 
+					button.btn.btn-primary Message
+				td
+					button.btn.btn-danger Ban
+			tr.inner-table#inner-table-3.hide
+				td colspan="5"
+					table.table
+						tr
+							td 2420 Campus drive
+							td Activated 9/20
+						tr
+							td 2151 Ridge
+							td Activated 9/21
+						tr
+							td 919 Clark
+							td Activated 2/31
+			tr
+				td 4
+				td Soundview apts
+				td 20 listings
+				td 
+					button.btn.btn-primary Message
+				td
+					button.btn.btn-danger Ban
+			tr.inner-table#inner-table-4.hide
+				td colspan="5"
+					table.table
+						tr
+							td 2420 Campus drive
+							td Activated 9/20
+						tr
+							td 2151 Ridge
+							td Activated 9/21
+						tr
+							td 919 Clark
+							td Activated 2/31
+
+javascript:
+ 	$( document ).ready(function() {
+ 		$("#linkyo").click(function(){
+ 			$("#inner-table-1").toggle();
+ 			$("#inner-table-1 > td").css("border-top","none");
+ 		});
+	});

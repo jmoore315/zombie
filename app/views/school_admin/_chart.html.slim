@@ -1,0 +1,25 @@
+canvas#myChart width="980" height="400"
+
+#chartdata data-x-axis="#{@x_axis.to_json}" data-y-axis="#{@listing_array.to_json}"
+
+coffee:
+
+	x_axis = $.parseJSON $('#chartdata').attr('data-x-axis')
+	y_axis = $.parseJSON $('#chartdata').attr('data-y-axis')
+	data = {
+		labels : x_axis,
+		datasets : [
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,1)",
+				pointColor : "rgba(151,187,205,1)",
+				pointStrokeColor : "#fff",
+				data : y_axis
+			}
+		]
+	}
+	ctx = document.getElementById("myChart").getContext("2d")
+	if @chart == "Line"
+		myNewChart = new Chart(ctx).Line(data)
+	else
+		myNewChart = new Chart(ctx).Bar(data)

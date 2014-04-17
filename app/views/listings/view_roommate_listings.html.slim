@@ -1,0 +1,29 @@
+.container
+	= render 'school_header', school: @school
+	.row
+		.span12
+			.rentals
+				- if @roommate_listings.empty?
+					h3 = "No roommate listings have been posted yet at #{@school.name}"
+				- for listing in @roommate_listings
+					.rental
+						= link_to view_roommate_listing_url(id: listing.id)
+							.rental_image
+								- if listing.images.present?
+									= image_tag listing.images.order(:id).first.url(:thumb).to_s, class:'img-polaroid'
+								- else
+									= image_tag no_image_available_thumb, class:'img-polaroid'
+							.rental_info
+								.rental_address = listing.title
+								.rental_unit
+									.rental_attribute
+										.tag = listing.description
+				- if @pages > 1
+					.pagination
+						ul
+							- if @page != 1
+								li = link_to view_roommate_listings_url(school_code: @school.code, page: @page-1)
+							- for page in 1..@pages do
+								li = link_to view_roommate_listings_url(school_code: @school.code, page: page)
+							- if @page != @pages
+								li = link_to view_roommate_listings_url(school_code: @school.code, page: @page-1)

@@ -1,0 +1,90 @@
+.container
+	= render 'school_header', school: @school
+	= render 'listings/share_bar', school_id: @school.id, bookmarkable: @roommate_listing, bookmarkable_type: 'RoommateListing', subject: "Roommate Profile: #{@roommate_listing.title}}"
+	.listing_container
+		.well
+			.span9
+				.row
+					.listing-title
+							h2 = @roommate_listing.title
+				.row
+					.listing-image-container.pull-left
+						.well
+							.listing-image
+								- if @images.present?
+									#rental_carousel.carousel.slide
+										.carousel-inner
+											- active = 'active'
+											- for image in @images do
+												.item class="#{active}"
+													center = image_tag image.url(:carousel)
+													- active = nil
+									- if @images.count > 1
+										a.carousel-control.left href="#rental_carousel" data-slide="prev" &lsaquo;
+										a.carousel-control.right href="#rental_carousel" data-slide="next" &rsaquo;
+								- else
+									.item.active
+										center = image_tag no_image_available_thumb
+					.listing-attributes-container.pull-left
+						.well
+							.listing-attributes
+								h4 About
+								ul.left-attributes.pull-left
+									li 
+										.listing-attribute Name: 
+										= " #{@roommate_listing.account.users.first.first_name} #{@roommate_listing.account.users.first.last_name}"
+									li 
+										.listing-attribute Graduation Year: 
+										= " #{@roommate_listing.pretty_print_attribute(:grad_year)}"
+									li 
+										.listing-attribute Age: 
+										= " #{@roommate_listing.pretty_print_attribute(:age)}"
+									li 
+										.listing-attribute Gender: 
+										= " #{@roommate_listing.pretty_print_attribute(:gender)}"
+									li 
+										.listing-attribute Occupancy Date: 
+										= " #{@roommate_listing.pretty_print_attribute(:occupancy_date)}"
+								ul.right-attributes.pull-left
+									li 
+										.listing-attribute Cleanliness: 
+										= " #{@roommate_listing.pretty_print_attribute(:cleanliness)}"
+									li 
+										.listing-attribute Sociability: 
+										= " #{@roommate_listing.pretty_print_attribute(:social)}"
+									li 
+										.listing-attribute Ideal Rent: 
+										= " $ #{@roommate_listing.pretty_print_attribute(:ideal_rent)} per month"
+									li 
+										.listing-attribute Facebook Page:
+										= " #{@roommate_listing.pretty_print_attribute(:fb_link)}"
+				.row
+					.roommate-prefs-container.well.pull-left
+						h4 Roommate Preferences
+						ul
+							li 
+								.listing-attribute Gender: 
+								= " #{@roommate_listing.pretty_print_attribute(:pref_gender)}"
+							li 
+								.listing-attribute Sociability: 
+								= " #{@roommate_listing.pretty_print_attribute(:pref_social)}"
+							li 
+								.listing-attribute Age: 
+								= " #{@roommate_listing.pretty_print_attribute(:pref_age)}"
+							li 
+								.listing-attribute Cleanliness: 
+								= " #{@roommate_listing.pretty_print_attribute(:pref_cleanliness)}"
+							li 
+								.listing-attribute Smoking: 
+								= " #{@roommate_listing.pretty_print_attribute(:pref_smoking)}"
+							li 
+								.listing-attribute Pets: 
+								= " #{@roommate_listing.pretty_print_attribute(:pref_pets)}"
+					.description-container.well.pull-left		
+						h4 Description		
+						p = @roommate_listing.description
+
+			.span3.pull-left.contact-container
+				h4 = "Contact #{@roommate_listing.account.users.first.first_name}"
+				= render 'messages/message_form', messageable_id: @roommate_listing.id, messageable_type: "RoommateListing", school_code: @school.code
+			.clearfix

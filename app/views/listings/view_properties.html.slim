@@ -1,0 +1,95 @@
+.container
+	= render 'school_header', school: @school
+	.row
+		.span3
+			.rentals_sidebar
+				#map_canvas.img-polaroid.google-maps
+				= render "layouts/map"
+				h3 Search
+				= form_tag view_properties_url(school_code: @school.code), method: :get do
+					p = select_tag :sort_by, options_for_select(UnitClass.orders_select, @sort_by)	
+					#prices
+						.pull-left Min Rent: $<span class="price_min">#{@price_min}</span>
+						.pull-right Max Rent: $<span class="price_max">#{@price_max}</span>
+					#price_slider
+					.date-range-section
+						.input-prepend
+							span.add-on: i.icon-calendar
+							= text_field_tag :lease_picker, @lease_picker, placeholder:'Approximate lease dates', class: 'lease_picker_student'
+					- if @property_type == 'rentals'
+						p = select_tag :bedrooms, options_for_select(UnitClass.bedroom_options_rentals, @bedrooms), prompt: 'Any number of bedrooms'
+						p = select_tag :bathrooms, options_for_select(UnitClass.bathroom_options_rentals, @bathrooms), prompt: 'Any number of bathrooms'
+					- else
+						p = number_field_tag :size, @size, placeholder:'Approximate room size'
+						p = select_tag :roommates, options_for_select(UnitClass.roommate_options, @roommates), prompt: "Number of Roommates"		
+					= hidden_field_tag :price_min, @price_min, class:'price_min'
+					= hidden_field_tag :price_max, @price_max, class:'price_max'
+					= hidden_field_tag :school_code, @school.code
+					= hidden_field_tag :property_type, @property_type
+					= submit_tag 'Search', class:'btn btn-primary'
+					= link_to 'show all', view_properties_url(school_code: @school.code, property_type: @property_type), class:'btn clear_rental_search pull-right'
+		.span9
+			.rentals
+				- if @rentals.empty?
+					h3 There are no rentals that meet your search criteria.
+				- properties = []	
+				- for rental in @rentals do
+					- property = rental.property
+					- prop_index = properties.index(property)
+					- if prop_index == nil
+						- properties << property
+						- prop_number = properties.length()
+					- else
+						- prop_number = prop_index + 1
+					.rental class="property_#{property.id}"
+						= link_to view_property_url(school_code: @school.code, id: rental.id) do
+							.rental_image
+								- if property.first_image_url
+									= image_tag property.first_image_url, class:'img-polaroid'
+								- else
+									= image_tag noimages_thumb, class:'img-polaroid'
+								.rental_number
+									= "#{prop_number}"
+							.rental_info id="#{rental.id}"
+								.rental_address = property.street_address
+								.rental_unit.rent
+									.rental_attribute.rent
+										.data = rental.pretty_rent
+										.tag per month
+									.rental_attribute.distance
+										.data = "#{property.property_schools.first.distance.round(2)} mi."
+										.tag to campus
+									- if @property_type == 'rentals'
+										- if rental.pretty_bedrooms == 'Studio'
+											.rental_attribute.studio
+												.data = rental.pretty_bedrooms
+												.tag beds
+										- else
+											.rental_attribute.beds
+												.data = rental.pretty_bedrooms
+												.tag beds
+											.rental_attribute.baths
+												.data = rental.pretty_bathrooms
+												.tag baths
+									- else
+										/.rental_attribute.attribute_size
+											.data = rental.size
+											.tag sq. ft.
+										.rental_attribute.attribute_roommates
+											.data = rental.roommates
+											.tag roommates
+									.rental_attribute.lease
+										.data = rental.pretty_lease
+										.tag lease from - until
+
+				.pagination style="#{'visibility: hidden;' if @pages <= 1}"
+					ul
+						- if @page != 1
+							li = link_to view_properties_url(school_code: @school.code, page: @page-1, sort_by: @sort_by, include_graduate: @include_graduate, graduate_only: @graduate_only, lease_picker: @lease_picker, bedrooms: @bedrooms, bathrooms: @bathrooms, size: @size, roommates: @roommates, price_min: @price_min, price_max: @price_max) do
+								i.icon-angle-left
+						- for page in 1..@pages do
+							li class= "#{'active disabled' if page==@page}" = link_to page, view_properties_url(school_code: @school.code, page: page, sort_by: @sort_by, include_graduate: @include_graduate, graduate_only: @graduate_only, lease_picker: @lease_picker, bedrooms: @bedrooms, bathrooms: @bathrooms, size: @size, roommates: @roommates, price_min: @price_min, price_max: @price_max)
+
+						- if @page != @pages
+							li = link_to view_properties_url(school_code: @school.code, page: @page+1) do
+								i.icon-angle-right

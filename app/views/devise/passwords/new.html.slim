@@ -1,0 +1,14 @@
+.container
+	- if resource.errors.present?
+		.row
+			.span8.offset2
+				.alert.alert-error
+					h2 We couldn't send the password reset instructions.
+					- resource.errors.full_messages.each do |error|
+						p = error
+	.row
+		.span6.offset3
+			h2 Forgot your password?
+			= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+				div = f.email_field :email, placeholder:'Email address'
+				div = f.submit "Send password reset instructions", class:'btn btn-primary btn-large'

@@ -1,0 +1,18 @@
+doctype html
+html style="#{"background-color: rgb(245, 245, 245)" if @info_section || @settings_section}"
+	head
+		title uHoused
+		= stylesheet_link_tag "application", :media => "all"
+		= favicon_link_tag "https://s3.amazonaws.com/uhoused-admin/images/new_favicon.ico"
+		= javascript_include_tag "application"
+		= csrf_meta_tags
+		= yield :head
+		/[if IE 7] = stylesheet_link_tag "font-awesome-ie7.min.css", media: "all"
+		/[if lt IE 9] = javascript_include_tag "html5shiv.js"
+	body style="#{"background-color: rgb(245, 245, 245)" if @info_section || @settings_section}"
+		#wrap
+			= render 'layouts/navbar'
+			= yield
+			= yield :scripts
+			#push 
+		= render 'layouts/footer'

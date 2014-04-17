@@ -1,0 +1,9 @@
+.container
+	.static-pages-container
+		.row
+			= render 'settings_sidebar', current_setting:'payments', permissions:@permissions
+			.span9
+				.static-pages-content.well
+					.page-header
+						h3 Payment History
+					p You have no payments.

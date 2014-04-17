@@ -1,0 +1,14 @@
+.container
+	- if resource.errors.present?
+		.row
+			.span8.offset2
+				.alert.alert-error
+					h2 There was a confirmation error.
+					- resource.errors.full_messages.each do |error|
+						p = error
+	.row
+		.span6.offset3
+			h2 Send confirmation email
+			= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+				= f.email_field :email, placeholder: "Email address"
+				= f.submit "Resend confirmation instructions", class:'btn btn-primary btn-large'

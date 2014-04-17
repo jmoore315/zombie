@@ -1,0 +1,31 @@
+.container 
+	.static-pages-container
+		.row
+			= render 'info/info_sidebar' 
+			.span9 
+				.static-pages-content.well
+					.page-header
+						h3 About Us
+					h5 Company History
+					p uHoused was started by students at Northwestern University who recognized that the process by which students find off-campus housing could be done much more efficiently. uHoused was founded in 2012 to address this problem. Our goal is to make the process by which students find off-campus housing easy and stress-free.
+					h5 Company Details
+					ul
+						li Headquarters: Evanston, IL
+						li Date of Incorporation: February 4, 2013.
+					h5 Follow us on...
+					ul
+						li = link_to "Facebook", "https://www.facebook.com/uhoused?fref=ts"
+						li = link_to "Twitter", "https://twitter.com/uHoused"
+					h5 Contact
+					p 
+						| Need to get in touch? 
+						br
+						| If you are seeking help using our website, please visit our 
+						= link_to "help pages", help_path
+						| . If your inquiry is press or business-related, you can email us at 
+						span.contact-email
+						| .
+
+
+javascript:
+	document.onload = render_email_address("contact-email", "contact");

@@ -1,0 +1,23 @@
+en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "cannot be blank. Please specify an email address."
+              taken: "is already taken by another user. Please choose another email address."
+              invalid: "is invalid. Please choose another email address."
+            password:
+              blank: "cannot be blank. Please specify a password."
+              confirmation: "does not match its confirmation. Make sure to type carefully!"
+            password_confirmation:
+              blank: "cannot be blank."
+            company_name:
+              blank: "cannot be blank. Specify a name for your apartment management company. If you are an individual, give your name."
+            confirmation_token:
+              invalid: "is invalid. You can get another token below."
+            first_name:
+              blank: "cannot be blank. Please specify a first name."
+            last_name:
+              blank: "cannot be blank. Please specify a last name"

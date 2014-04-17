@@ -1,0 +1,49 @@
+.container
+	.row
+		.span12
+			.listing_header
+				ul.listing_links
+					li.return_to_listings = link_to listings_url do
+						i.icon-arrow-left
+						span Return to your listings
+					- if @item.active
+						li = link_to "Deactivate Item", deactivate_item_url(@item.id), class: 'btn btn-primary'
+					- else
+						li = link_to "Activate Item", activate_item_url(@item.id), class: 'btn btn-primary'
+					li = link_to "Delete Item", item_url(@item.id), method: :delete, class:'btn btn-danger'
+				h2.saving
+					span Saving <i class="icon-spinner.icon-spin"></i>
+				h2.saved Saved!
+				h2.not_saved Not Saved
+				- if @item.name.present?
+					h1 = @item.name
+				- else
+					h1 New Marketplace Item
+
+			h3 Images
+			p Upload as many pictures as you like. The first image will be the item's cover photo.
+			= render 'images/upload_images', imageable: @item
+
+			ul.listing_imgs
+				- if @item.images.present?
+					- @item.images.order(:id).each do |i|
+						= render '/images/thumb_listing', image: i
+				- else
+					li.noimages You haven't posted any images yet.
+	.row
+		.item_form
+			= form_for @item, url: item_url(id: @item.id), remote: true do |f|
+				.span4
+					h3 Info
+					= f.label :name
+					= f.text_field :name, class:'remoteform'
+					= f.label :price
+					= f.number_field :price, class:'remoteform'
+					= f.label :subcategory, 'Category'
+					= f.select :subcategory, grouped_options_for_select(MarketplaceItem.subcategories_select, @item.subcategory), {}, class:'remoteform'
+					= f.label :condition
+					= f.select :condition, options_for_select(MarketplaceItem.conditions, @condition), {}, class:'remoteform'
+				.span4
+					h3 Description
+					= f.label :description
+					= f.text_area :description, rows: 10, class:'remoteform'

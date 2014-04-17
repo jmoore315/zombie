@@ -1,0 +1,84 @@
+.hero-unit#homepage-hero
+	- if notice
+		.alert class="alert-success" = notice
+	- elsif alert
+		.alert class="alert-error" = alert
+	.container
+		h1 Find an off-campus apartment.
+		= form_tag choose_school_url, method: :get do
+			= text_field_tag 'school', nil, placeholder: 'Choose your school to begin', class:'school-picker', autocomplete:'off'
+			= submit_tag 'GO', class: 'btn btn-info'
+
+.container#home_container
+	.row
+		.span12
+			h2 uHoused is the easiest way to find student housing. 
+	.row
+		.span4
+			.left-graphic
+				p 
+					i.icon-home
+				h3 Post
+				h4 ...rentals, sublets, roommate profiles, and for-sale items.
+		.span4
+			.middle-graphic
+				p
+					i.icon-search
+				h3 Browse
+				h4 ...rentals and sublets by distance to campus, price, and more.
+		.span4
+			.right-graphic
+				p
+					i.icon-comments-alt
+				h3 Communicate
+				h4 ...directly with landlords and student posters.
+hr
+.dark-container
+	.container
+		.row
+			.span12
+				h2 Why uHoused?
+		.row
+			.span12
+				ul.nav.nav-tabs
+					li.active 
+						a href="#students" data-toggle="tab" 
+							h4 Students
+					li	
+						a href="#landlords" data-toggle="tab" 
+							h4 Landlords
+					li
+						a href="#schools" data-toggle="tab" 
+							h4 Schools
+				.tab-content
+					.tab-pane.active id="students" 
+						.text-box.pull-left
+							h3 Only relevant listings
+							p Unlike other housing websites, uHoused provides students with rental listings that are actually close to campus. Graduate students can view properties farther away.
+							p Additionally, uHoused offers a marketplace for buying and selling goods, including used furniture, with fellow students.
+							p Best of all, uHoused is 100% free for students.
+							h4 = link_to 'Learn more...', info_students_url
+						.image-box.pull-left
+							= image_tag 'https://s3.amazonaws.com/uhoused-admin/images/frontpage_map.png'
+						.clearfix
+					.tab-pane id="landlords"
+						.text-box.pull-left
+							h3 Market directly to students
+							p uHoused offers landlords access to the entire student body at the schools we've released to. For any landlord that rents to students, this gives a competitive edge that can't be beat.
+							p Rental listings on uHoused are beautifully displayed. Listings can be easily shared via social media and email. As a result, uHoused helps landlords quickly and easily increase their online presence.
+
+							h4 = link_to 'Learn more...', info_landlords_url
+						.image-box.pull-left#marker-picture
+							= image_tag 'https://s3.amazonaws.com/uhoused-admin/images/frontpage_marker.png', width:200, height:200
+							= link_to 'http://www.designcontest.com/' do
+								#backlink
+						.clearfix
+					.tab-pane id="schools"
+						.text-box.pull-left  
+							h3 Partner with uHoused for numerous benefits
+							p Our partner schools become an active part in the uHoused process. Off-campus housing school administrators are given accounts to view data about the housing market and site usage, oversight on listings for their school, and the ability to protect students from landlords with bad reputations.
+							p Most importantly, bringing uHoused to your campus will give your students a modern off-campus housing website they'll love to use. 
+							h4 = link_to 'Learn more...', info_schools_url
+						.image-box.pull-left#marker-picture
+							= image_tag 'https://s3.amazonaws.com/uhoused-admin/images/frontpage_check.png', width: 190, height: 190
+						.clearfix

@@ -1,0 +1,16 @@
+.container
+	- if resource.errors.present?
+		.row
+			.span8.offset2
+				.alert.alert-error
+					h2 We couldn't save your account.
+					- resource.errors.full_messages.each do |error|
+						p = error
+		.row
+			.span4.offset4
+				#standalone_login
+					h2 Sign up
+					- if resource.role == 'landlord'
+						= render '/devise/registrations/new_landlord'
+					- else
+						= render '/devise/registrations/new_student'

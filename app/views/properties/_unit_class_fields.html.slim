@@ -1,0 +1,29 @@
+div id="unit_#{unit.id} unit"
+	= form_for unit, url: property_url(unit), remote: true do |f|
+		- if unit.property.property_type == 'sublets'
+			.unit_form_elt.size
+				= f.label :size, 'Room Size (sq. ft)'
+				= f.number_field :size, class:'size remoteform'
+			.unit_form_elt.roommates
+				= f.label :roommates, 'Roommates'
+				= f.select :roommates, options_for_select(UnitClass.roommate_options, unit.roommates), {}, class:'roommates remoteform'
+		- else
+			.unit_form_elt.bedrooms
+				= f.label :bedrooms
+				= f.select :bedrooms, options_for_select(UnitClass.bedroom_options, unit.bedrooms), {}, class:'listing_beds remoteform'
+			.unit_form_elt.bathrooms
+				= f.label :bathrooms
+				= f.select :bathrooms, options_for_select(UnitClass.bathroom_options, unit.bathrooms), {}, class:'listing_baths remoteform'
+		.unit_form_elt.rent
+			= f.label :price, 'Monthly rent'
+			= f.number_field :price, min:0, max:99999, class:'remoteform input-small'
+		.unit_form_elt.lease_from
+			= f.label :lease_from, 'Lease Start Date'
+			= f.text_field :lease_from, value: unit.lease_from.try(:to_date), class:'date remoteform input-small'
+		.unit_form_elt.lease_until
+			= f.label :lease_until, 'Lease End Date'
+			= f.text_field :lease_until, value: unit.lease_until.try(:to_date), class:'date remoteform input-small'
+
+	- if unit.property.property_type == 'rentals' && @property.unit_classes.count > 1
+		= link_to remove_unit_url(unit), remote: true, method: :delete, class:'btn btn-danger unit_form_elt unit_form_del pull-right' do
+			i.icon-remove

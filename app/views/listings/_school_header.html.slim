@@ -1,0 +1,33 @@
+.row
+	.span12.page_title
+		- if flash[:error]
+			.alert.alert-success = flash[:error]
+		ul.nav.nav-tabs
+			li.school_name class="#{"active" unless @property_type}"
+				= link_to school.nickname, school_home_url(school_code: school.code)
+			li.dropdown class="#{"active" if @property_type == "rentals"}"
+				a.dropdown-toggle.school_link href="#" data-toggle="dropdown" Rentals <i class="icon-caret-down"></i>
+				ul.dropdown-menu.rental-type-dropdown
+					li = link_to "Graduate", view_properties_url(school_code: school.code, property_type:'rentals', include_graduate: true), class: 'school_link'
+					li = link_to "Undergradate", view_properties_url(school_code: school.code, property_type:'rentals', include_graduate: false), class: 'school_link'
+			li class="#{"active" if @property_type == "sublets"}"
+				= link_to "Sublets", view_properties_url(school_code: school.code, property_type:'sublets'), class: 'school_link'
+			li class="#{"active" if @property_type == "marketplace"}"
+				= link_to "Marketplace", view_marketplace_url(school_code: school.code), class: 'school_link'
+			- if @current_account && (@current_account.role == 'student' || (@current_account.role == "school_admin" && school.code == @current_account.code))
+				li class="#{"active" if @property_type == "roommate_listings"}"
+					= link_to "Roommates", view_roommate_listings_url(school_code: school.code), class: 'school_link'
+			- if !user_signed_in?
+				li class="#{"active" if @property_type == "roommate_listings"}"
+					= link_to "Roommates", '#', class: 'school_link roommate_link'
+			- if @current_account && @current_account.role  == 'school_admin' && @current_account.code == school.code
+				li = link_to "Admin", school_admin_url(school_code: school.code), class: 'school_link'
+
+- unless user_signed_in? && @current_account.role == 'student'
+	#roommate_account_create_modal.modal.hide tabindex="-1" role="dialog"
+		.modal-body.small-modal-body
+			h3 Only students can view roommate listings. 
+			hr
+			h4 Please sign in or create a student account to view this page.
+		.modal-footer
+			button class="btn btn-primary" data-dismiss="modal" Ok

@@ -1,0 +1,19 @@
+.container
+	.static-pages-container
+		.row
+			= render 'settings_sidebar', current_setting:'notifications', permissions:@permissions
+			.span9
+				.static-pages-content.well
+					.page-header
+						h3 How You Receive Notifications
+					= form_for current_user, url: settings_notifications_url do |f|
+						p = f.label :notify_listings, class:'checkbox' do
+							= f.check_box :notify_listings
+							span When there is activity on your listings
+						p = f.label :notify_newsletter, class:'checkbox' do
+							= f.check_box :notify_newsletter
+							span Monthly newsletter
+						p = f.label :notify_major_announcements, class:'checkbox' do
+							= f.check_box :notify_major_announcements
+							span Major site announcements
+						p = f.submit 'Save', class: 'btn btn-primary'

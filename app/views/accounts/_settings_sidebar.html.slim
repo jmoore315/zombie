@@ -1,0 +1,17 @@
+.span3
+	#static-pages-list.sidebar-nav.well
+		.page-header.text-center
+			h4 Settings
+		ul.nav.nav-list
+			- if permissions.start_with? 'landlord'
+				li class="#{'active dark-active' if current_setting == 'profile'}" = link_to 'Company Profile', settings_profile_url
+			- if permissions.start_with? 'school_admin'
+				li class="#{'active dark-active' if current_setting == 'profile'}" = link_to 'School Profile', settings_profile_url
+			li class="#{'active dark-active' if current_setting == 'user'}" = link_to 'User Settings', settings_user_url
+			- if permissions.start_with? 'landlord'
+				li class="#{'active dark-active' if current_setting == 'billing'}" = link_to 'Billing', settings_billing_url
+				li class="#{'active dark-active' if current_setting == 'payments'}" = link_to 'Payment History', settings_payments_url
+			- if permissions == 'landlord_admin'
+				li class="#{'active dark-active' if current_setting == 'company'}" = link_to 'Company Admin', settings_company_url
+			li class="#{'active dark-active' if current_setting == 'notifications'}" = link_to 'Notification Settings', settings_notifications_url
+- @settings_section = true

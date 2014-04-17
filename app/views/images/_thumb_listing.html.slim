@@ -1,0 +1,4 @@
+li id="image_#{image.id}"
+	= link_to image.url do
+		= image_tag image.url(:thumb), class:'img-polaroid', onerror:"$(this).attr('src', #{noimages_thumb})"
+		= link_to "remove", image_url(image.id), method: :delete, remote: true, class: "del_img btn"

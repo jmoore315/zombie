@@ -1,0 +1,37 @@
+<script type="text/javascript">
+
+function initialize() {
+  var mapOptions = {
+    zoom: 16,
+    minZoom: 12,
+    maxZoom: 17,
+    panControl: false,
+    zoomControl: true,
+    mapTypeControl: false,
+    zoomControlOptions: { style: google.maps.ZoomControlStyle.SMALL },
+    center: new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    zIndex: 50
+  }
+
+  var map = new google.maps.Map(document.getElementById("singlemap_canvas"), mapOptions); 
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>),
+    map: map,
+    icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
+    title: "<%= @property.pretty_address %>",
+    draggable: false
+  });
+}
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "https://maps.googleapis.com/maps/api/js?v=3.5&key=AIzaSyAiRkyfv702SOREqoAMx-CB_5Ue3e4GUWg&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+</script>

@@ -1,0 +1,6 @@
+$('.alert').remove();
+<% if @email_updated == true %>
+	$('.edit_email').before('<div class="alert alert-success">Email address updated. Check your email to confirm your new address.</div>');
+<% else %>
+	$('.edit_email').before('<div class="alert alert-error">You didn\'t change the email address.</div>');
+<% end %>

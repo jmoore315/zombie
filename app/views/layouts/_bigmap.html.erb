@@ -1,0 +1,81 @@
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtF-E4NPsB1dEW6TPeQz4QiewiYVN3tv4&sensor=false"></script>
+
+<script type="text/javascript">
+
+function initialize() {
+  var mapOptions = {
+    zoom: 14,
+    minZoom: 12,
+    maxZoom: 17,
+    center: new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>),
+    panControl: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+    zoomControl: true,
+    zoomControlOptions: { style: google.maps.ZoomControlStyle.LARGE },
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("bigmap_canvas"), mapOptions);
+  var openInfoWindow = null;
+
+  <% for location in @locations do %>
+    var marker_<%= location.id %> = new google.maps.Marker({
+      position: new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>),
+      map: map,
+      draggable: false, 
+      <% if location.property_type == 'sublets' %>
+        icon: 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+      <% else %>
+        icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      <% end %>
+    });
+
+    var infowindow_<%= location.id %> = new google.maps.InfoWindow({
+      content: '<%= j render "/listings/school_location", location: location, school:@school %>',
+      maxWidth: 600
+    });
+
+    google.maps.event.addListener(marker_<%= location.id %>, 'click', function() {
+      if (openInfoWindow != null) {openInfoWindow.close();}
+      map_recenter((marker_<%= location.id %>.getPosition()),0,-136, map);;
+      infowindow_<%= location.id %>.open(map,marker_<%= location.id %>);
+      openInfoWindow = infowindow_<%= location.id %>
+    });
+
+    $(".property_<%= location.id %>").hover(
+      function() {
+        map.panTo(marker_<%= location.id %>.getPosition());       
+        marker_<%= location.id %>.setIcon('https://maps.google.com/mapfiles/ms/icons/red-dot.png');
+      },
+      function() {
+        marker_<%= location.id %>.setIcon('https://maps.google.com/mapfiles/ms/icons/blue-dot.png');
+      }
+    );
+  <% end %>
+
+}
+
+function map_recenter(latlng,offsetx,offsety, map) {
+    var point1 = map.getProjection().fromLatLngToPoint(
+        (latlng instanceof google.maps.LatLng) ? latlng : map.getCenter()
+    );
+    var point2 = new google.maps.Point(
+        ( (typeof(offsetx) == 'number' ? offsetx : 0) / Math.pow(2, map.getZoom()) ) || 0,
+        ( (typeof(offsety) == 'number' ? offsety : 0) / Math.pow(2, map.getZoom()) ) || 0
+    );  
+    map.panTo(map.getProjection().fromPointToLatLng(new google.maps.Point(
+        point1.x - point2.x,
+        point1.y + point2.y
+    )));
+}
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "https://maps.googleapis.com/maps/api/js?v=3.5&key=AIzaSyAiRkyfv702SOREqoAMx-CB_5Ue3e4GUWg&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+</script>

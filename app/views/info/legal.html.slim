@@ -1,0 +1,18 @@
+.container 
+	.static-pages-container
+		.row
+			= render 'info/info_sidebar'
+			.span9 
+				.static-pages-content.well
+					.page-header
+						h3 Legal Information
+					.row.terms
+						=render 'info/terms'
+						.verticalspace
+						hr.dark-hr	
+						.verticalspace
+						=render 'info/privacy_policy'
+						.verticalspace
+						hr.dark-hr	
+						.verticalspace
+						=render 'info/housing_policy'

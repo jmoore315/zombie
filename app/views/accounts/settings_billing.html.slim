@@ -1,0 +1,9 @@
+.container
+	.static-pages-container
+		.row
+			= render 'settings_sidebar', current_setting:'billing', permissions:@permissions
+			.span9
+				.static-pages-content.well
+					.page-header
+						h3 Billing
+					p We are not currently billing landlords for rentals.

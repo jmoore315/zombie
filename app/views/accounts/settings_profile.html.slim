@@ -1,0 +1,17 @@
+.container
+	.static-pages-container
+		.row
+			= render 'settings_sidebar', current_setting:'profile', permissions:@permissions
+			.span9
+				.static-pages-content.well
+					.page-header		
+						h1 = "#{@co_or_school} Profile"
+					= form_for @current_account, url: settings_profile_url do |f|
+						= f.label :name, "#{@co_or_school} Name"
+						= f.text_field :name, placeholder: "#{@co_or_school} Name"
+						= f.label :telephone, "#{@co_or_school} Telephone"
+						= f.text_field :telephone, placeholder: "#{@co_or_school} Telephone"
+						.account_email class='#{@co_or_school}'
+							= f.label :email, "#{@co_or_school} Email\t<i class='icon-question-sign'></i>".html_safe, class:''
+							= f.text_field :email, placeholder: "#{@co_or_school} Email"
+						p = f.submit 'Save', class: 'btn btn-primary'

@@ -1,0 +1,75 @@
+.container
+	= render 'school_header', school: @school
+	= render 'listings/share_bar', school_id: @school.id, bookmarkable: @item, bookmarkable_type: 'MarketplaceItem', subject: "#{@item.name.capitalize}"
+	.listing_container 
+		.well
+			.span12
+				.row
+					.listing-title.pull-left
+						h2 = @item.name + " - $" + "#{@item.price}"
+						h5 Posted by #{@poster_first_name} from #{@school.name}
+			.span9
+				.row.picture-container
+					.nav.nav-tabs
+						li.active 
+							a href="#" = "Photos (" + "#{@images.size}" + ")"
+					.tab-content
+						.tab-pane.active
+							#item_carousel.carousel.slide
+								.carousel-inner
+									- active = 'active'
+									- for image in @images do
+											.item class="#{active}"
+												center = image_tag image.url(:carousel)
+												- active = nil
+								- if @images.present? && @images.size > 1
+									a.carousel-control.left href="#item_carousel" data-slide="prev" &lsaquo;
+									a.carousel-control.right href="#item_carousel" data-slide="next" &rsaquo;
+				.well.listing-details-well
+					.row.span4#item-info-container
+						h4 Information
+						.item_information
+							table.table.table-striped.table-bordered
+								tr
+									td Category
+									td.rental-tag
+										.data = @item.category
+								tr
+									td Subcategory
+									td.rental-tag
+										.data = @item.subcategory
+								tr
+									td Price
+									td.rental-tag
+										.data = "$#{@item.price}"
+								tr
+									td Condition
+									td.rental-tag
+										.data = @item.condition
+					.row.span4#item-description-container
+						h4 Description
+						p = @item.description
+					.clearfix
+				- if @users_other_items.size > 0
+					.well
+						h4 = "Also for sale by #{@poster_first_name}"
+						.listing-details-well.also-for-sale
+							.row.span8
+								
+								.users-other-listings style="width: #{250 * @users_other_items.count}px"
+									- for item in @users_other_items do
+										= render 'similar_item', item: item
+							.clearfix
+			.span3
+				.pull-left.well.contact-container 
+					h4 Contact #{@poster_first_name} 
+					= render 'messages/message_form', messageable_id: @item.id, messageable_type: "MarketplaceItem", school_code: @school.code
+				.pull-left.well.similar-listings-container style="min-height: 220px"
+						h4 Similar Listings
+						- if @similar_listings.size > 0
+							.similar-listings
+								- for item in @similar_listings do
+									= render 'similar_item', item: item
+						- else
+							p There are currently no other listings similar to this item.
+			.clearfix

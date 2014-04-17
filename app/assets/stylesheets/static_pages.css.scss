@@ -1,0 +1,196 @@
+address {
+	font-style: italic;
+	margin-left: 25px;
+}
+
+.terms {
+	a {
+		h1 {
+			color: #111;
+			cursor: pointer;
+		}
+	}
+	li { list-style-type: disc; }
+}
+
+.static-pages-container{
+
+	#static-pages-list {
+		.page-header {
+			margin-top: 0px;
+			margin-bottom:10px;
+			padding-bottom: 0;
+			color: #444;
+		}
+
+		float: left;
+		padding-top: 15px;
+		padding-left: 0;
+
+		ul {
+			margin-left: 0px;
+
+			.nav-header {
+				color: black;
+			}
+			li {
+				padding-left: 20px;
+			}
+			.active.dark-active {
+				a {
+					background-color: #2c3e50;
+				}
+			}
+		}
+	}
+	.well {
+		width: 90%;
+		padding-top:5px;
+		background-color: white;
+	}
+
+	.static-pages-content {
+		width: 690px;
+		padding-left: 20px;
+		h1, h2, h3, h4, h5 { margin: 0;}
+		h3 {
+			color: black;
+		}
+		.span4 {
+			width: 308px;
+		}
+
+		.page-header {
+			margin-top: 10px;
+			margin-bottom:10px;
+			color: #444;
+			padding-bottom: 0;
+			margin-left: 0px;
+		}
+
+		ul > li {
+			list-style: square;
+			margin-left: -10px;
+			font-size: 13px;
+		}
+		ol {
+			list-style-type: decimal;
+		}
+		.faq-section-title {
+			text-transform: uppercase;
+			font-size: 12px;
+			color: black;
+		}
+		.faq-section {
+			border-bottom: 1px solid #e3e3e3;
+		}
+		.walkthrough-section {
+			margin-left: 15px;
+			margin-bottom: 5px;
+		}
+		#faq-note {
+			border: 1px solid orange;
+			line-height: 2em;
+			margin-left: 0px;
+			padding-left: 10px;
+		}
+		.row {
+			margin-top: 20px;
+			margin-bottom: 20px;
+			margin-left: 0;
+		}
+		.accordion-inner {
+			border-top: none;
+			padding-left: 40px;
+			padding: 3px 40px;
+			margin-bottom: 10px;
+		}
+		.walkthrough-inner {
+			border-left: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			padding-left: 10px;
+			padding-top: 0;
+		}
+		.accordion-heading .accordion-toggle {
+			padding: 3px 15px;
+		}
+	}
+}
+
+.contact-section {
+	border: 1px solid #999;
+}
+
+#blue-icon {
+	color: blue;
+}
+
+
+#faq_modal {
+	width: 700px;
+	height: auto;
+	margin-left: -350px;
+	.modal-body {
+		height: auto;
+		font-size: 15px;
+		line-height: 20px;
+		ol {
+			font-size: 15px;
+			list-style-type: decimal;
+			li {
+				margin-bottom: 10px;
+			}
+		}
+	}
+	.modal-header {
+	}
+}
+
+
+//
+//INFORMATION FOR: PAGES
+//
+
+
+.info-details-container {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	padding-left: 40px;
+	padding-top: 0;
+
+	.info-icon-box {
+	margin-top: 20px;
+	font-size: 4em;
+	color: rgb(226, 226, 226);
+	width: 60px;
+	height: 60px;
+	float: left;
+	text-align: center;
+	}
+	.group-icon-box {
+		margin-top: 35px;
+	}
+	.home-icon-box {
+		margin-top: 5px;
+	}
+
+	.info-text-box{
+		margin-left: 95px;
+		font-size: 14px;
+		text-align: justify;
+		margin-right: 40px;
+
+	}
+}
+
+
+//
+//Our team
+//
+
+#founders .foundername 
+{
+	font-weight: bold; padding: 0 20px 10px 0; 
+	font-size: 1em;
+	line-height: 30px;
+}

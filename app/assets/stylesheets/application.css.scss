@@ -1,0 +1,25 @@
+/* This is a manifest file that will be compiled into application.css, which will include all the files
+ * listed below. Any CSS and SCSS file within this directory, lib/assets/stylesheets, can be referenced
+ * here using a relative path. Do not add styles to this directory.
+ * 
+ * uHoused CSS Shorthand
+ * -----------------------
+ * bath    := bathrooms
+ * bed     := bedrooms
+ * del     := delete, remove, etc.
+ * elt     := element
+ * img     := image
+ * info    := information
+ * listing := any user-owned property, sublet, or marketplace item
+ * prop    := property
+ * 
+ *= require 'reset'
+ *= require font-awesome
+ *= require bootstrap-datepicker
+ *= require jquery.ui.slider
+ *= require s3_direct_upload_progress_bars
+ *= require_self
+ *= require_tree .
+ */
+
+@import "font-awesome";

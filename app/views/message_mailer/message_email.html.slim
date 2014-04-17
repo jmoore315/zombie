@@ -1,0 +1,8 @@
+p = @message_content
+
+h4 = "#{@sender_name}'s information"
+p Email: #{@message.sender_email}
+p Telephone: #{@sender_telephone}
+p Asking about: #{@link}
+
+h4: a href="mailto:#{@message.sender_email}?subject=Re: #{@subject}&body=%0a%0d%0a%0d#{@message.sender_email} said:%0a%0d%0a%0d#{@message_content}" Click here to reply.

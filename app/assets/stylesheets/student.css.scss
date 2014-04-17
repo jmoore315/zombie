@@ -1,0 +1,208 @@
+.view_school_button{margin: 10px 0 0 10px;}
+.school_link{
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #2c3e50;
+}
+.school_name {
+	font-size: 2.2em;
+	font-weight: bold;
+	a {color: #2c3e50; }
+}
+
+.school_link.active > a, .school_link.active > a:hover {
+	color: black;
+}
+
+.rental-type-dropdown {
+	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	li {
+		a{
+			font-size: 14px;
+			line-height: 18px;
+			padding: 10px 10px;
+			color: #2c3e50;
+			font-weight: bold;
+		}
+	}
+	margin-top: 0;
+	width: 140px;
+	min-width: 140px;
+	border-top: none;
+	
+}
+
+.school_name.active > a {
+	color: black;
+	//color: #2c3e50;
+}
+.school_name.active >a:hover {
+	color: black;
+}
+
+.rentals_sidebar, .marketplace_sidebar {
+	width: 220px;
+	h3 {margin-bottom: 0;}
+	#price_slider {margin: 10px 10px 15px 5px; clear: both;}
+	#prices { margin-bottom: 30px; margin-top: -10px; line-height: 24px; font-size: 13px;}
+	input[type="text"] {width: 180px;}
+	input[type="number"] {}
+	input[type="submit"] {width: 100px;}
+	select { margin-bottom: 10px; width: 100%;}
+	.clear_rental_search { width: 70px;}
+}
+
+.daterangepicker {
+	
+}
+
+div.rental {
+	border-top-style:solid;
+	border-top-width: 1px;
+	border-top-color: rgb(216,216,216);
+	min-height: 120px;
+	&:hover {
+		background: rgba(240,240,240, 0.5);
+		text-decoration: none;
+		a {text-decoration: none;}
+		-moz-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+		-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
+		box-shadow: 0 0 5px rgba(0,0,0,0.3);
+		cursor: pointer;
+	}
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+
+	background-color: rgba(255,255,255,0.5);
+	
+	-moz-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	
+	padding-left: 10px;
+}
+.rental_image {
+	height: 0;
+}
+
+div.rental_image img {
+	float: left;
+	height: 90px;
+	margin: 10px 10px 0 0;
+}
+
+div.rental_info {
+	margin-left: 110px;
+	padding-top: 10px;
+}
+
+.rental_number {
+	color: black;
+	background-color: white;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	position: relative;
+	left: -110px;
+	top: 10px;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	display: inline-block;
+	font-weight: bold;
+
+
+}
+
+.new_category {margin-bottom: 0; color: rgb(51,51,51)}
+.new_attribute {color: rgb(51,51,51);}
+.new_see_all {float: right; margin-top: 23px;}
+
+div.rental_address { font-size: 1.5em; }
+
+div.rental_unit {
+	height: 49px;
+	padding: 20px 0 20px 0;
+	.rental_attribute {
+		margin-right: 16px;
+		float: left;
+	}
+	.rent     {width: 80px;}
+	.distance {width: 90px;}
+	.studio	  {width: 90px;}
+	.beds     {width: 35px;}
+	.baths    {width: 35px;}
+	.size     {width: 60px;}
+	.roommates{width: 60px;}
+	.lease    {width: 200px;}
+
+	.data {
+		color: rgb(51,51,51);
+		font-size: 1.7em;
+		font-weight: lighter;
+	}
+	.tag {
+		color: #444;
+		font-size: .75em;
+		font-weight: bold;
+	} 
+}
+
+div.rental_info {
+	//padding-bottom: 10px;
+}
+
+.rental_sort p {float: right;}
+
+
+// infoWindow Styling
+.location_info {width: auto; margin-left: 110px; }
+.location_image img {float: left; height: 90px; margin-right: 10px; }
+.location_address {
+	font-size: 12px;
+	margin-right: 10px;
+	font-weight: bold;
+	em {font-weight: normal;}
+	text-decoration: underline;
+}
+.location_units {margin-top: 10px;}
+.location_unit {
+	display: block;
+	height: 30px;
+	border-bottom-style: solid;
+	border-top-width: 5px;
+	border-top-color: rgb(51,51,51);
+	margin-bottom: 5px;
+
+	a:hover {font-weight: bold; }  /* mouse over link */
+
+	.location_unit_attribute {
+		float: left;
+		//margin-right: 20px;
+		.data {font-weight: lighter; font-size: .9em; text-align: left; line-height: 16px;}
+		.tag {
+			font-weight: bold; font-size: 0.6em; 
+			line-height: 10px;
+			
+				color: black;
+				text-align: left;
+		}
+	}
+	.studio, .br-bath, .no_roommates, .roommates,  {
+	 .tag {
+			//text-align: center;
+		}
+	}
+
+
+	.rent      {width: 65px;}
+	.studio    {width: 100px;}
+	.beds      {width: 30px;}
+	.baths     {width: 35px;}
+	.size      {width: 40px; padding: 0;}
+	.br-bath	 {width: 100px;}
+	.roommates {width: 100px;}
+	.no_roommates {width: 100px;}
+}

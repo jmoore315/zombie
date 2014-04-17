@@ -1,0 +1,48 @@
+li.property class="property_#{property.id}"
+	.pull-right
+		.manage_status
+			- if property.active
+				.property_active Active
+				= link_to 'Deactivate', deactivate_property_url(property.id), class:'btn btn-primary'
+			- else
+				.property_inactive Inactive
+				= link_to 'Activate', activate_property_url(property.id), class:'btn btn-primary'
+			= link_to 'Delete', property_url(property.id), method: :delete, class:'btn btn-danger'
+			.fb-like data-href="http://www.uhoused.com/properties/#{property.unit_classes.first.id}" data-send="false" data-layout="button_count" data-width="200" data-show-faces="false" data-font="verdana" data-action="recommend" data-id="#{property.id}"
+	div
+		= link_to property_url(property.id) do
+			.prop_img
+				- if property.images.present?
+					= image_tag property.images.sort{|a,b| a.id <=> b.id }.first.url(:thumb), class:'img-polaroid'
+				- else
+					= image_tag noimages_thumb, class:'img-polaroid'
+			.property_info
+				.property_address= property.pretty_address
+				.property_school = @current_account.role == 'student' ? property.pretty_nearby_schools(3) : property.pretty_nearby_schools(15)
+				.property_units
+					- property.unit_classes.each do |unit|
+						.property_unit
+							.property_unit_attribute.rent
+								.data = unit.pretty_rent
+								.tag per month
+							.property_unit_attribute.distance
+								.data = property.pretty_distance_to_nearest_school
+								.tag to campus
+							- if @current_account.role == 'landlord'
+								div class="property_unit_attribute #{unit.pretty_bedrooms == 'Studio' ? 'studio' : 'beds'}"
+									.data = unit.pretty_bedrooms
+									.tag beds
+								- unless unit.pretty_bedrooms == 'Studio'
+									.property_unit_attribute.baths
+										.data = unit.pretty_bathrooms
+										.tag baths
+							- else
+								.property_unit_attribute.size
+									.data = unit.size
+									.tag sq. feet
+								.property_unit_attribute.roommates
+									.data = unit.roommates
+									.tag roommates
+							.property_unit_attribute.lease
+								.data = unit.pretty_lease
+								.tag lease from - until

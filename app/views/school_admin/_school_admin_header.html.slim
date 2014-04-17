@@ -1,0 +1,11 @@
+.row
+	.span12.page_title
+		- if flash[:error]
+			.alert.alert-success = flash[:error]
+		ul.nav.nav-tabs
+			li.school_name class="#{"active" unless @tab_name}"
+				= link_to "Dashboard Home", school_admin_url(school_code: @current_account.code)
+			li class="#{"active" if @tab_name == "analytics"}"
+				= link_to "Analytics", school_admin_analytics_url(school_code: @current_account.code), class:'school_link'
+			li class="#{"active" if @tab_name == "landlord_monitor"}"
+				= link_to "Landlord Monitor", school_admin_monitor_url(school_code: @current_account.code), class:'school_link'

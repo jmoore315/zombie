@@ -1,0 +1,47 @@
+.container
+	.row
+		.span12
+			= render 'school_admin_header'
+			.landlord-table
+				table.table.table-condensed
+					tr
+						th 
+						th Landlord Name
+						th # Active Listings
+					- row_counter = 1
+					- @landlord_table.each do |name, units|
+						tr
+							td = row_counter
+							- row_counter+=1
+							td
+								a.linkyo id="#{units.first.id}" href="#" = name
+							td = "#{units.count} #{'listing'.pluralize(units.count)}"
+							td	
+								button.btn.btn-primary Message
+							td
+								button.btn.btn-danger Ban
+						tr.inner-table.hide id="#{units.first.id}"
+							td colspan='5'
+								table.table
+									tr
+										th Unit Address
+										th Unit Type
+										th Activation Date
+									- units.each do |unit|
+										tr
+											td 
+												= link_to unit.property.street_address + ", " + unit.property.city + ", " + unit.property.state, view_property_url(id: unit.id, school_code: @current_account.code, property_type: "rentals"), target: "_blank"
+											- if unit.bedrooms == 0
+												td = "Studio"
+											- else
+												td = "#{unit.pretty_bedrooms}BR/#{unit.pretty_bathrooms}BTH"
+											td colspan="3" = "#{unit.property.created_at.strftime('%m/%d/%Y')}"
+
+javascript:
+ 	$( document ).ready(function() {
+ 		$('.linkyo').click(function(event){
+ 			id = event.target.id
+ 			$('#' + id + '.inner-table').toggle();
+ 			return false;
+ 		});
+	});

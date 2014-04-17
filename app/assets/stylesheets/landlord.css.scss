@@ -1,0 +1,106 @@
+.manage_status {
+	display: block;
+	width: 150px;
+	text-align: right;
+	.btn {margin: 0 0 5px 5px;}
+}
+
+
+.view_properties {
+	a:hover { text-decoration: none; }
+
+	.title {
+		margin-bottom: 20px;
+		.btn {margin-right: 10px;}
+	}
+
+	.property {
+		border-top-style:solid;
+		border-top-width: 1px;
+		border-top-color: rgb(216,216,216);	
+		&:hover {
+			background: rgb(220,220,220);
+			text-decoration: none;
+			a {text-decoration: none;}
+		}
+	}
+
+	.prop_img img {
+		float: left;
+		height: 90px;
+		width: 90px;
+		margin: 15px 10px 0 0;
+	}
+
+	.property_info {
+		padding-top: 15px;
+		padding-bottom: 5px;
+		margin-left: 110px;
+	}
+
+	.property_address { font-size: 1.5em; }
+	.property_school { color: #444; }
+
+	.property_status {
+		float: right;
+		margin-right: 10px;
+		.btn {
+			float: right;
+			display: block;
+			padding: 0;
+			width: 50%;
+			margin-bottom: 2px;
+		}
+		.fb-like {float: right;}
+	}
+	.property_active, .property_inactive {
+		text-align: right;
+		margin-bottom: 5px;
+		margin-top: 5px;
+		font-size: 1.5em;
+		font-weight: bold;
+	}
+	.property_active {
+		color: #008000;
+	}
+
+	.property_inactive {
+		color: #FF6600;
+	}
+
+	div.property_unit {
+		height: 49px;
+		padding-top: 20px;
+		border-top-style:solid;
+		border-top-width: 1px;
+		border-top-color: rgb(216,216,216);	
+		.property_unit_attribute {
+			margin-right: 16px;
+			float: left;
+		}
+		.rent      	 {width: 80px;}
+		.distance  	 {width: 90px;}
+		.studio	   	 {width: 90px;}
+		.beds      	 {width: 35px;}
+		.baths     	 {width: 35px;}
+		.size      	 {width: 60px;}
+		.roommates	 {width: 60px;}
+		.lease     	 {width: 200px; margin-right: 0px;}
+		.subcategory {width: 250px;}
+
+		.data {
+			color: rgb(51,51,51);
+			font-size: 1.7em;
+			font-weight: lighter;
+		}
+		.tag {
+			color: #444;
+			font-size: .75em;
+			font-weight: bold;
+		}
+	}
+
+	div.property_unit:first-of-type {
+		border-top-style:none;
+	}
+}

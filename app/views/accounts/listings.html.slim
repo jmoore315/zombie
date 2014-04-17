@@ -1,0 +1,46 @@
+- if @current_account.role == 'student'
+	- content_for :for_head do
+		meta property="og:title" content="uHoused"
+		meta property="og:type" content="website"
+		meta property="og:description" content="Check out a new sublet I've posted."
+
+.container.view_properties
+	.row
+		.span12.title
+			- if @current_account.role == 'landlord'
+				= link_to 'Add a Rental Property', '/new_rental', class:'btn btn-large btn-primary listings_link'
+				h1 Listings for #{@current_account.name}
+			- elsif @current_account.role == 'student'
+				.dropdown.pull-right
+					.btn.btn-large.btn-primary.dropdown-toggle data-toggle="dropdown" Post
+					ul.dropdown-menu
+						li = link_to "Sublet", new_sublet_url
+						li = link_to "Marketplace Item", new_item_url
+						li = link_to "Roommate Profile", new_roommate_listing_url
+				h1 Listings for #{current_user.first_name} #{current_user.last_name}
+	- if @properties.empty? && @items.empty?
+		.row
+			.span8.offset2
+				- if @current_account.role == 'student'
+					h2 You don't have any sublets, item listings, or a roommate profile.
+					p To get started, click the 'Post' button.
+				- elsif @current_account.role == 'landlord'
+					h2 You don't have any rental listings yet.
+					p Click the 'Add a Rental Property' button to start listing rentals.
+	- else
+		.row
+			.span12
+				h4
+					em Click on a listing to edit it.
+		.row
+			.span12
+				ul.properties
+					/this should be separated to 3 groups 
+					- if @properties.present?
+						-  @properties.each do |property|
+							= render "cards/manager_property_card", property: property
+					- if @items.present?
+						- @items.each do |item|
+							= render "cards/manager_item_card", item: item
+					- if @roommate_listing
+						= render "cards/manager_roommate_listing_card", roommate_listing: @roommate_listing

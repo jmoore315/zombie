@@ -1,0 +1,7 @@
+h2 Change your password
+.reset_password
+	= form_for :user, url: user_password_url, html:{ method: :patch } do |f|
+	  = f.hidden_field :reset_password_token
+	  p = f.password_field :password, placeholder:'Enter a new password'
+	  p = f.password_field :password_confirmation, placeholder: 'Confirm new password'
+	  p = f.submit "Change password", class:'btn btn-primary btn-large'

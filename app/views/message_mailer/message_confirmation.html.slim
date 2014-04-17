@@ -1,0 +1,7 @@
+- if @messageable.class.to_s == 'UnitClass'
+	h4 You sent a message about #{@property.pretty_address}:
+- elsif @messageable.class.to_s == 'MarketplaceItem'
+	h4 You sent a message about #{@messageable.name}:
+- elsif @messageable.class.to_s == 'RoommateListing'
+	h4 You sent a message about #{@messageable.title}:
+p = @message_content

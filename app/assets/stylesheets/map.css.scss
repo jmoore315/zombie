@@ -1,0 +1,56 @@
+//.gmnoprint > :first-child { display: none;}
+#map_canvas { height: 210px; width: 210px; }
+#bigmap_canvas {
+	height: 400px;
+	width: 970px;
+	img { max-width: 960px; }
+}
+#singlemap_canvas { height: 440px;	width: 628px; }
+
+#bigmap_filter_box {
+	position: relative;
+	height: 30px;
+	width: 250px;
+	background-color: white;
+	border: 1px black solid;
+	top: -400px;
+	left: 715px;
+	box-shadow: 2px 2px 2px gray;
+	display: table;
+	.bigmap_filter_content {
+		display: table-cell;
+		vertical-align: middle;
+	}
+	p, h5 {
+		display: inline;
+	}
+	padding-left: 5px;
+}
+
+#map_container {
+	height: 410px;
+}
+
+#bigmap_filter_rental_icon {
+	width: 15px;
+	height: 15px;
+	background-color: #fd7567;
+	border: 1px solid black;
+	display: inline-block;
+	margin-top: 4px;
+	margin-left: 5px;
+}
+
+#bigmap_filter_sublet_icon {
+	width: 15px;
+	height: 15px;
+	background-color: #6991fd;
+	display: inline-block;
+	border: 1px solid black;
+	margin-top: 4px;
+	margin-left: 5px;
+}
+
+img[src*="iws3.png"] {
+    display: none;
+}

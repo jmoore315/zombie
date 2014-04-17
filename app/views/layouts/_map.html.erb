@@ -1,0 +1,82 @@
+<script type="text/javascript">
+
+function initialize() {
+  var mapOptions = {
+    zoom: 14,
+    zoomControl: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+    center: new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    zIndex: 50
+  }
+  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions); 
+  <% if @property_type == 'rentals' %>
+    <% @locations.each_with_index do |location, index| %>
+      <% if location.latitude.present? %>
+        var marker_<%= location.id %> = new google.maps.Marker({
+          position: new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>),
+          map: map,
+          //if rentals page, set icons to red, otherwise set to blue
+          icon: 'https://s3.amazonaws.com/uhoused-admin/images/map-markers/red-' + <%= (index+1).to_s() %> + ".png",
+          title: "<%= location.street_address %>",
+          draggable: false
+        });
+        var z_<%= location.id %> = marker_<%= location.id %>.getZIndex();
+
+        $(".property_<%= location.id %>").hover(
+          function() {
+            map.panTo(marker_<%= location.id %>.getPosition());       
+            //if rentals page, set icon to blue, otherwise set it to red
+            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/blue-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setZIndex(900);
+          },
+          function() {
+            //if rentals page, set icons to red, otherwise set to blue
+            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/red-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setZIndex(50);
+          }
+        );
+      <% end %>
+    <% end %>
+
+  <% else %>
+    <% @locations.each_with_index do |location, index| %>
+      <% if location.latitude.present? %>
+        var marker_<%= location.id %> = new google.maps.Marker({
+          position: new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>),
+          map: map,
+          //if rentals page, set icons to red, otherwise set to blue
+          icon: 'https://s3.amazonaws.com/uhoused-admin/images/map-markers/blue-' + <%= (index+1).to_s() %> + ".png",
+          title: "<%= location.street_address %>",
+          draggable: false
+        });
+
+        $(".property_<%= location.id %>").hover(
+          function() {
+            map.panTo(marker_<%= location.id %>.getPosition());       
+            //if rentals page, set icon to blue, otherwise set it to red
+            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/red-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setZIndex(900);
+          },
+          function() {
+            //if rentals page, set icons to red, otherwise set to blue
+            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/blue-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setZIndex(50);
+          }
+        );
+      <% end %>
+    <% end %>
+  <% end %>
+}
+
+function loadScript() {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "https://maps.googleapis.com/maps/api/js?v=3.5&key=AIzaSyAiRkyfv702SOREqoAMx-CB_5Ue3e4GUWg&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+</script>

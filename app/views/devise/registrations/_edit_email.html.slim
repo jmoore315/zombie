@@ -1,0 +1,5 @@
+.edit_email
+	= form_for current_user, :url => update_email_url, method: :patch, remote: true do |f|
+	  = f.label :email
+	  = f.text_field :email
+	  p = f.submit "Save", class: 'btn btn-primary'

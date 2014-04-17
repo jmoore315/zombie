@@ -1,0 +1,7 @@
+$('.alert').remove();
+<% if @errors.present? %>
+	$('.edit_password').before("<%= j render 'devise/registrations/errors', errors: @errors %>");
+<% else %>
+	$('.edit_password').replaceWith("<%= j render 'devise/registrations/edit_password' %>")
+	$('.edit_password').before('<div class="alert alert-success">Password updated successfully.</div>')		
+<% end %>

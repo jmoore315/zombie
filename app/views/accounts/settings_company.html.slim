@@ -1,0 +1,9 @@
+.container
+	.static-pages-container
+		.row
+			= render 'settings_sidebar', current_setting:'company', permissions:@permissions
+			.span9
+				.static-pages-content.well
+					.page-header
+						h3 Company Settings
+					p This should have all the company settings

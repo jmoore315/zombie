@@ -1,0 +1,43 @@
+.container
+	.static-pages-container
+		.row
+			= render 'settings_sidebar', current_setting:'user', permissions:@permissions
+			.span9
+				.static-pages-content.well
+					- if alert
+						.alert.alert-error = alert
+					.page-header
+						h3 Personal Information
+					= form_for current_user, url: settings_user_url do |f|
+						= f.label :first_name, 'First Name'
+						= f.text_field :first_name, placeholder: 'First Name'
+						= f.label :last_name, 'Last Name'
+						= f.text_field :last_name, placeholder: 'Last name'
+						.user_email
+						- if @permissions == 'student'
+							= f.fields_for :account do |af|
+								= af.label :telephone
+								= af.text_field :telephone, placeholder: 'Telephone'
+						p = f.submit 'Save', class:'btn btn-primary'
+					h2 Email
+					= render "/devise/registrations/edit_email"
+					h2 Password
+					= render "/devise/registrations/edit_password"
+					- if @permissions == 'student' || @permissions == 'landlord_admin'
+						= link_to '#deactivate', method: :post, class:'btn btn-danger deactivate_link' do
+							h4 Deactivate Account
+
+- if @permissions == 'student' || @permissions == 'landlord_admin'
+	#deactivate_modal.modal.hide tabindex="-1" role="dialog"
+		.modal-header
+			button.close type="button" data-dismiss="modal" ×
+			h4 Make sure you want to do this
+		.modal-body
+			= form_tag deactivate_account_url, autocomplete: :off do
+				= label_tag :phrase, '<strong>Type the following phrase:</strong><br/><em>Please deactivate my account</em>'.html_safe
+				= text_field_tag :phrase
+				= label_tag :email, '<strong>Enter your email address:</strong>'.html_safe
+				= text_field_tag :email, nil, autocomplete: :off
+				= label_tag :password, '<strong>Confirm your password:</strong>'.html_safe
+				= password_field_tag :password, nil, autocomplete: :off
+				p = submit_tag 'Deactivate this account', class: 'btn btn-danger'

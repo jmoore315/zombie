@@ -1,0 +1,585 @@
+// Styles for a user's listings
+
+.listing_header     { margin-top: 20px; }
+.listing_links      { height: 50px; margin: 0; }
+.listing_links li 	{ float: left; margin-right: 20px; }
+.return_to_listings { margin-top: 7px;}
+.listing_imgs { margin: 0 0 0 0; }
+.listing_imgs li {
+	a:hover {text-decoration: none;}
+	margin: 0 34px 50px 0;
+	height: 100px;
+	width:  100px;
+	float:  left;
+}
+
+.del_img { width: 84px; }
+
+#unit_fields { margin-bottom: 20px; }
+
+.saving {
+	display: none;
+	float: right;
+	color: #666;
+}
+
+.saved {
+	display: none; 
+	float: right; 
+	color: green;
+}
+
+.not_saved {
+	display: none;
+	float: right;
+	color: green;
+}
+
+.properties { margin-left:0px; }
+
+.prop_state {
+	width: 220px;
+	margin-bottom: 10px;
+}
+
+.listing_beds,
+.listing_baths {
+	width: 120px;
+}
+
+.size {
+	width: 116px;
+	padding-right: 10px;
+}
+
+.roommates{ width: 116px; }
+
+#listing_price{ width: 116px; }
+
+#uploadbutton { color: rgba(0,0,0,0); }
+
+.unit_form_elt {
+	float: left;
+	margin: 10px 17px 0 0;
+}
+
+.unit_form_del { margin: 34px 0 0 0; }
+
+.rental_information, .item_information {
+	//line-height: 40px;
+	.rental-tag {
+		text-align: right;
+		border-left: none;
+	}
+	.data {
+		display: inline;
+		//font-size: 1.8em;
+		font-weight: bold;
+	}
+	.tag {
+		color: #777;
+		//font-weight: bold;
+		margin-left: 5px;
+	}
+	.lease{width: 200px;}
+}
+
+.listings_link {
+	margin: 10px 0 0 10px;
+	float: right;
+}
+
+#rental_carousel, #item_carousel {margin-top: 0; margin-bottom: 0; }
+
+.icon-ok-circle { color: rgb(0,139,0);}
+.icon-ban-circle { color: rgb(170,0,0);}
+
+
+.listing-title {
+		h1 {
+		font-size: 26px;
+		margin-top: 0;
+		margin-bottom: 15px;
+		font-weight: bold;
+		line-height: 26px;
+	}
+	margin-right: 50px;
+}
+
+
+.dark-well {
+	background-color: #eeeeee;
+}
+
+.share_bar {	
+	form {
+		margin-bottom: 0;
+	}
+
+	.span3 {
+		margin-left: 15px;
+		width: auto;
+		span {
+			margin: 0;
+		}
+	}
+	.well {
+		margin-bottom: 0;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+		//border-radius: 0;
+		border-bottom: none;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		padding-left: 0;
+	}
+	.btn {
+		font-family: Lato;
+		line-height: 20px;
+		max-height: 20px;
+		border-radius: 2px;
+		font-size: 12px;
+		padding: 0px 3px;
+		.icon-envelope-alt {
+			font-weight: bold;
+		}
+	}
+	i.icon-envelope-alt {
+		font-size: 18px;
+		font-weight: bold;
+		color: #333;
+		padding: 1px;
+		text-align: center;
+	}
+	.btn-success {
+		border-bottom: 1px solid #1eb48c;
+	}
+	.btn-link {
+		font-size: 14px;
+		color: #1d95cb;
+		font-weight: bold;
+		margin-left: 10px;
+	}
+
+	.btn-facebook {
+		padding-left: 0;
+		padding-bottom: 1px;
+		padding-top: 1px;
+		padding-right: 5px;
+		color: #2d428b;
+		font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+		//font-weight: bold;
+		i { font-size: 1.5em;}
+		.icon-sign-blank { color: white; } 
+		border: 1px solid black;
+		.icon-container {display: inline; position: relative; top: -1px;}
+		height: 23px;
+		white-space: nowrap;
+		vertical-align: top;
+		background-color: white;
+		background-image: -moz-linear-gradient(top, #ffffff, #dedede);
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dedede));
+		background-image: -ms-linear-gradient(top, #ffffff, #dedede);
+		background-image: linear-gradient(top, #ffffff, #dedede);
+		background-image: -o-linear-gradient(top, #ffffff, #dedede);
+		border: #CCC solid 1px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		outline: none;
+		filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#dedede');
+				
+	}
+	.facebook-share, .twitter-share {
+		.btn:hover {
+			background-color: white ;
+			background-image: none;
+			filter: none ;
+		}
+	}
+
+	.btn-email {
+		padding-bottom: 1px;
+		padding-top: 1px;
+		color: #0a0a0a;
+		height: 23px;
+		font-weight: bold;
+		color: #333;
+		text-decoration: none;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		white-space: nowrap;
+		vertical-align: top;
+		background-color: white;
+		background-image: -moz-linear-gradient(top, #ffffff, #dedede);
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dedede));
+		background-image: -ms-linear-gradient(top, #ffffff, #dedede);
+		background-image: linear-gradient(top, #ffffff, #dedede);
+		background-image: -o-linear-gradient(top, #ffffff, #dedede);
+		border: #CCC solid 1px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		outline: none;
+		filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#dedede');
+
+	}
+	.btn-twitter {
+		padding-bottom: 1px;
+		padding-top: 1px;
+		color: #0a0a0a;
+		i { color: #1399ea; font-size: 1.5em; border-radius: 5px; }
+		font-weight: bold;
+		//.icon-container { display: inline; position: relative; top: 1px;}
+		height: 23px;
+		font-weight: bold;
+		color: #333;
+		text-decoration: none;
+		text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+		white-space: nowrap;
+		vertical-align: top;
+		background-color: white;
+		background-image: -moz-linear-gradient(top, #ffffff, #dedede);
+		background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dedede));
+		background-image: -ms-linear-gradient(top, #ffffff, #dedede);
+		background-image: linear-gradient(top, #ffffff, #dedede);
+		background-image: -o-linear-gradient(top, #ffffff, #dedede);
+		border: #CCC solid 1px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		outline: none;
+		filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ffffff', endColorstr='#dedede');
+
+	}
+}
+
+.listing_container {
+	h3 {
+		margin-bottom: 0;
+	}
+	.row {
+		margin-left: 0;
+	}
+	.span3 {
+		width: 240px;
+	}
+	.span9 {
+		width: 660px;
+		/*h4 {
+			color: black;
+			font-size: 13px;
+			line-height: 24px;
+			margin: 0 0 8px 0;
+			text-transform: uppercase;
+		}*/
+	}
+	ul {
+		margin-left: 0;
+	}
+	.well {
+		padding-left: 0;
+		padding-right: 0;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		//border-radius: 0;
+		background-color: #F8F8F8;
+		.well {
+			/*
+			padding-top: 5px;
+			padding-bottom: 5px;
+			border-radius: 0px;
+			padding-left: 10px;
+			padding-right: 10px;
+			*/
+			padding: 10px;
+			background-color: white;
+		}
+
+		.listing-attributes {
+			width: 418px;
+			height: 178px;
+			ul {
+				width: 190px;
+				display: inline;
+			}
+			.left-attributes {
+			}
+			.right-attributes {
+				margin-left: 20px;
+			}
+			.listing-attribute {
+				line-height: 26px;
+			}
+		}
+		.listing-attribute {
+			font-weight: bold;
+			display: inline;
+			font-size: 13px;
+		}
+		.description-container {
+			width: 418px;
+			height: 165px;
+			margin-left: 20px;
+
+		}
+	}
+	.span12 {
+		width: 940px;
+	}
+	
+	.listing-title {
+		h2 { 
+			font-size: 24px; 
+			line-height: 32px; 
+			margin: 0 0 5px 0;
+		}
+		max-width: 495px;
+		h5 { margin-top: 0;}
+	}
+
+
+	.listing-attributes-container {
+		margin-left: 20px;
+		display: block;
+		height: auto;
+		float: left;
+		p {
+			margin: 0;
+		}
+	}
+
+	.listing-image-container {
+		.well {
+			padding: 10px;
+		}
+		.listing-image {
+			background-color: #ccc;
+			//background-color: white;
+			height: 178px;
+			width: 178px;
+		}
+	}
+
+	.message-container {
+		width: 275px;
+		margin-left: 0;
+		padding-left: 25px;
+		border-left: 1px solid #CCC;
+	}
+	.contact-container {
+		height: 450px;
+		border-left: 1px solid #ccc;
+		border-radius: 0;
+		padding-left: 20px;
+		padding-top: 0px;
+		margin-top: 35px;
+		h4 {
+			font-weight: bold;
+			color: black;
+			font-size: 16px;
+			border-bottom: 1px solid #ccc;
+			//text-decoration: underline;
+		}
+	}
+
+	.nav-tabs {
+		margin-bottom: 0px;
+		li {
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			border-bottom: none;
+			margin-right: 10px;
+			a, a:hover {
+				border: none;
+				margin-right: 0;
+			}
+		}
+	}
+	.tab-content {
+		padding: 10px;
+		background-color: white;
+		border: 1px solid #ccc;
+		border-top: none;
+	}
+
+}
+
+.black-link {
+	color: black;
+	font-weight: bold;
+}
+
+.roommate-prefs-container {
+	width: 178px;
+
+	li {
+		font-size: 12px;
+	}
+}
+.description-container {
+	p {
+		font-size: 14px;
+		//font-family: Helvetica;
+	}
+}
+
+
+.roommate-listing-title {
+  font-size: 26px;
+  text-decoration: underline;
+}
+
+.core-info-box {
+	h3 { line-height: 32px; margin: 0 0 5px 0; }
+	text-align: center;
+	font-weight: bold;
+	margin-top: 0px;
+	width: 110px;
+	margin-left: 30px;
+	//color: #1d95cb; 
+}
+
+/****************/
+// MESSAGE FORM //
+/****************/
+
+.sendmsg {
+	.btn.btn-info {
+		width: 100%;
+	}
+	input:not(.btn){
+		width: 230px;
+		padding: 2px 4px;
+		line-height: 10px;
+		color: #2c3e50;
+	}
+	textarea {
+		width: 226px;
+		line-height: 18px;
+		font-size: 14px;
+		color: #2c3e50;
+		font-style: italic;
+	}
+	label {
+		font-size: 12px;
+		line-height: 18px;
+		margin-bottom: 0;
+		font-weight: bold;
+	}
+}
+
+
+
+.similar-listings-container {
+	border-radius: 0px;
+	width: 240px;
+	.similar-listings{
+		//border-top: 1px solid gray;
+		max-height: 355px;
+		width: 240px;
+		max-width: none;
+		overflow-x: scroll;
+		.rental {
+			padding-top: 10px;
+			.rental_address {
+				font-size: 18px;
+			}
+
+			.img-polaroid{
+				width: 75px !important;
+				height: 75px !important;
+				padding: 0;
+			}
+			.rental_info {
+				margin-left: 90px;
+			}
+		}
+	}
+
+}
+.also-for-sale {
+	overflow: scroll;
+	.users-other-listings {
+	    height: 140px;
+	    overflow: hidden;
+  		white-space: nowrap;
+
+
+		.rental {
+			float: left;
+			margin-right: 10px;
+			padding-top: 10px;
+			padding-right: 10px;
+			.rental_address {
+				font-size: 18px;
+			}
+
+			.img-polaroid{
+				width: 75px !important;
+				height: 75px !important;
+				padding: 0;
+			}
+			.rental_info {
+				margin-left: 90px;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.picture-container {
+	margin-bottom: 20px;
+}
+
+.features-container {
+	margin-left:0;
+}
+
+.rental_amenities {
+	font-size: 16px;
+	line-height: 24px;
+	margin-top: -3px;
+}
+.amenities-container {
+	margin-left: 80px;
+}
+
+#grad-only {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+#item-info-container {
+	width: 220px !important;
+	margin-right: 40px !important;
+}
+#item-description-container {
+	width: 360px;
+}
+.listing-details-well {
+	border-radius: 0;
+}
+
+#bookmark-no-account-modal {
+	width: 600px;
+	margin-left: -300px;
+}
+#bookmark-non-student-modal {
+	width: 680px;
+	margin-left: -340px;
+	.small-modal-body{
+		height: 80px;
+	}
+}

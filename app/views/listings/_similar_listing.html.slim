@@ -1,0 +1,22 @@
+.rental class="#{rental.property_id}"
+	- property = rental.property
+	= link_to view_property_url(id: rental.id, school_code: school.code, property_type: property.property_type) do
+		.rental_address = truncate(property.street_address, length: 28)
+		.rental_image
+			- if property.images.present?
+				= image_tag property.images.order(:id).first.url(:thumb), class:'img-polaroid'
+			- else
+				= image_tag noimages_thumb, class:'img-polaroid'
+		.rental_info
+			.new_attribute = property.pretty_distance_to_school(@school.id) + " to campus"
+			.new_attribute = rental.pretty_rent + " per month"
+			- if property.property_type == " sublet"
+				.new_attribute = rental.size + " sq. foot bedroom"
+				.new_attribute = rental.roommates + " " + "roommate".pluralize(rental.roommates)
+			- else
+				- if rental.bedrooms == 0
+					.new_attribute = "Studio apartment"
+					.new_attribute = rental.pretty_bathrooms + " " + "bathroom".pluralize(rental.bathrooms * 0.1)
+				- else
+					.new_attribute = rental.pretty_bedrooms + " " + "bedroom".pluralize(rental.bedrooms * 0.1)
+					.new_attribute = rental.pretty_bathrooms + " " + "bathroom".pluralize(rental.bathrooms * 0.1)

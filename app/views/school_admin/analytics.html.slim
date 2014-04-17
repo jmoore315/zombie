@@ -1,0 +1,24 @@
+.container
+	.row
+		.span12
+			center
+				= render 'school_admin_header'
+				= form_tag school_admin_analytics_url(school_code: @current_account.code), method: :get, class:'form-inline' do
+					= select_tag :object,    options_for_select(School.analytics_objects_options, @object), prompt: 'Object'
+					= select_tag :function,  options_for_select(School.analytics_functions,  @function), prompt: 'Function'
+					= select_tag :timescale, options_for_select(School.analytics_timescales, @timescale), prompt: 'Timescale'
+					= submit_tag 'Search', class: 'btn'
+			- if @timescale == "All Time"
+				h1 = "#{@function} #{@object}: #{@listing_array}"
+			- else
+				= render 'chart'
+				table.table
+					thead
+						tr
+							th = @timescale
+							th = @object
+					tbody
+						- @listing_array.length.times do |i|
+							tr
+								td = @x_axis[i]
+								td = @listing_array[i]

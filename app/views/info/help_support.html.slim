@@ -1,0 +1,27 @@
+.container 
+	.static-pages-container
+		.row
+			= render 'info/info_sidebar'
+			.span9 
+				.static-pages-content.well
+					.page-header
+						h3 Support
+					.row
+						p 
+							| Before contacting us for support, please be sure to visit our 
+							= link_to "FAQ", help_url
+							|  and our 
+							= link_to "Walkthroughs", help_walkthroughs_url
+							| , as your question may be answered there.
+
+						p If your question is still unanswered, please send us an email to <span class="support-email"></span>. We will make every effort to get back to you in a timely manner.
+						h5 General contact info:
+						p 
+							| If you are trying to get in contact with us for a non-site related question (business, press, etc), please send us an email to 
+							span.contact-email
+							|.
+
+
+javascript:
+	document.onload = render_email_address("contact-email", "contact");
+	document.onload = render_email_address("support-email", "support");

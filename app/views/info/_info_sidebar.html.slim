@@ -1,0 +1,27 @@
+.span3
+	#static-pages-list.sidebar-nav.well
+		.page-header.text-center
+			h4 Information Center
+		ul.nav.nav-list
+			li.nav-header Information for:
+			li class="#{@info_section_name == 'students' ? 'active' : ''}" = link_to "Students", info_students_url
+			li class="#{@info_section_name == 'landlords' ? 'active' : ''}" = link_to "Landlords", info_landlords_url
+			li class="#{@info_section_name == 'schools' ? 'active' : ''}" = link_to "School Administrators", info_schools_url
+			li class="#{@info_section_name == 'parents' ? 'active' : ''}" = link_to "Parents", info_parents_url
+			li.nav-header Help and Support
+			li class="#{@info_section_name == 'help' ? 'active' : ''}" = link_to "FAQs", help_path
+			li class="#{@info_section_name == 'help_walkthroughs' ? 'active' : ''}" = link_to "Walkthroughs", help_walkthroughs_path
+			li class="#{@info_section_name == 'help_support' ? 'active' : ''}" = link_to "Get Support", help_support_path
+			/li.nav-header Advice for Students
+			/li class="#{@info_section_name == 'advice_apartment' ? 'active' : ''}" = link_to "Your First Apartment", '#'
+			/li class="#{@info_section_name == 'advice_subletting' ? 'active' : ''}" = link_to "Subletting", '#'
+			/li class="#{@info_section_name == 'advice_renters_rights' ? 'active' : ''}" = link_to "Renter's Rights", '#'
+			li.nav-header Company
+			li class="#{@info_section_name == 'about_us' ? 'active' : ''}" = link_to "About Us", about_us_path
+			li class="#{@info_section_name == 'about_team' ? 'active' : ''}" = link_to "Our Team", about_team_path
+			/li class="#{@info_section_name == 'about_jobs' ? 'active' : ''}" = link_to "Jobs", about_jobs_path
+			li class="#{@info_section_name == 'contact' ? 'active' : ''}" = link_to "Contact", about_contact_path
+			li.nav-header Legal
+			li class="#{@info_section_name == 'legal_terms' ? 'active' : ''}" = link_to "Terms of Use", legal_terms_url
+			li class="#{@info_section_name == 'legal_privacy' ? 'active' : ''}" = link_to "Privacy Policy", legal_privacy_url
+			/li class="#{@info_section_name == 'legal_housing' ? 'active' : ''}" = link_to "Housing Policy", legal_housing_url

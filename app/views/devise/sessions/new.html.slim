@@ -1,0 +1,13 @@
+.container
+	.row
+		.verticalspace
+			.span4.offset4
+				- if notice
+					.alert.alert-success = notice
+				- elsif alert
+					.alert.alert-error
+						h3 Login Error
+						span = alert
+			.span4.offset4
+				#standalone_login
+					= render 'devise/sessions/new'

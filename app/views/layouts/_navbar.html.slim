@@ -1,0 +1,75 @@
+.navbar.navbar-static-top
+	.navbar-inner
+		= link_to root_url, class:'brand' do
+			= image_tag "https://s3.amazonaws.com/uhoused-admin/images/icon_light_grey.svg", alt:'uHoused Home'
+		- if @show_navbar_search
+			= form_tag choose_school_url, method: :get, class:'navbar-form pull-left' do
+				= text_field_tag 'school', nil, placeholder: 'Choose a school', class:'school-picker', autocomplete:'off'
+				= submit_tag 'GO', class: 'btn btn-info', id: 'choose_school_btn'
+		ul.nav.pull-right
+			- if user_signed_in?
+				- if @current_account.role == 'school_admin'
+					li = link_to 'school listings', school_home_url(school_code: @current_account.code)
+					li = link_to 'dashboard', school_admin_url(school_code: @current_account.code)
+				- else
+					li = link_to 'my listings', listings_url
+				li.dropdown.account_dropdown
+					= link_to settings_url, class:'dropdown-toggle', :"data-toggle"=>"dropdown" do
+						= current_user.email + " "
+						i.icon-caret-down
+					ul.dropdown-menu
+						- if @current_account.role == 'school_admin'
+							li = link_to school_admin_url(school_code: @current_account.code) do
+								i.icon-bar-chart
+								= " Dashboard"
+						- if @current_account.role == 'student'
+							li = link_to listings_url do
+								i.icon-map-marker
+								= " My Listings"
+							li = link_to bookmarks_url do
+								i.icon-star
+								= " Bookmarks"
+						- if @current_account.role != 'landlord'
+							li = link_to school_home_url(school_code: @current_account.code) do
+								i.icon-home
+								= " School Listings"
+						li = link_to settings_url do
+							i.icon-gear
+							= " Settings"
+						li = link_to destroy_user_session_url, id:'logout' do
+							i.icon-signout
+							= " Log Out"
+				- if @current_account.role == 'student'
+					li.navbar-form
+						.btn.dropdown.dropdown-toggle.btn-custom data-toggle="dropdown" Post Yours
+						ul.dropdown-menu.pull-right
+							li = link_to "Sublet", new_sublet_url
+							li = link_to "Marketplace Item", new_item_url
+							li = link_to "Roommate Profile", new_roommate_listing_url
+				- elsif @current_account.role == 'landlord'
+					li
+						.navbar-form
+							= link_to "Post Yours", new_rental_url, class:'btn btn-custom'
+			- else
+				li#signup = link_to 'SIGN UP', '#', class:'sign_up_link'
+				li.dropdown#login
+					= link_to 'LOG IN', '#', class: 'dropdown-toggle'
+					ul.dropdown-menu
+						= render '/devise/sessions/new'
+				li.navbar-form
+					.btn.sign_up_link.btn-custom Sign up to post
+
+- unless user_signed_in?
+	#signup_modal.modal.hide tabindex="-1" role="dialog"
+		.modal-header
+			button.close type="button" data-dismiss="modal" ×
+			h3 SIGN UP
+		.modal-body
+			ul#signup_tabs.nav.nav-tabs
+				li.active = link_to 'Student', '#signup_student'
+				li = link_to 'Landlord', '#signup_landlord'
+			.tab-content
+				#signup_student.tab-pane.active.fade.in
+					= render 'devise/registrations/new_student'
+				#signup_landlord.tab-pane.fade
+					= render 'devise/registrations/new_landlord'

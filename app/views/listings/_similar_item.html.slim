@@ -1,0 +1,12 @@
+.rental class="item_#{item.id}"
+	= link_to view_item_url(id: item.id) do
+		.rental_address = truncate(item.name, length: 28)
+		.rental_image
+			- if item.first_image_url
+				= image_tag item.first_image_url, class:'img-polaroid'
+			- else
+				= image_tag noimages_thumb, class:'img-polaroid'
+		.rental_info
+			.new_attribute = "$#{item.price}"
+			.new_attribute = item.condition + " Condition"
+			.new_attribute = item.subcategory

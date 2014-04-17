@@ -1,0 +1,217 @@
+- content_for :head do
+	meta property="og:title" content="#{@property.full_address}"
+	meta property="og:image" content="#{@property.first_image_url}"
+	meta property="og:url" content="https://#{request.host + request.fullpath}"
+	meta property="og:description" content="#{@property.description}"
+
+.container
+	= render 'school_header', school: @school
+	= render 'listings/share_bar', school_id: @school.id, bookmarkable: @rental, bookmarkable_type: 'UnitClass', subject: "#{@property.property_type.singularize.capitalize} at #{@property.full_address}"
+	.listing_container
+		.well
+			.span12
+				.listing-title.pull-left
+					h2 = @property.street_address + ", " +  @property.city + ", " + @property.state
+					- if @property.property_type == 'rentals'
+						h5 Managed by #{@property.account.name}
+					- else
+						h5 Posted by #{@property.account.users.first.first_name} from #{@school.name}
+				.core-info-box.pull-right
+					h3 = "#{@rental.pretty_bedrooms}"
+					- if @rental.pretty_bedrooms == 'Studio'
+						span apartment
+					-else 
+						span bedrooms
+				.core-info-box.pull-right
+					h3 = @rental.pretty_rent
+					span per month
+				.core-info-box.pull-right
+					h3 = @property.pretty_distance_to_school(@school.id)
+					span to campus
+
+			.span9
+				.row.picture-container
+					ul.nav.nav-tabs#picture_map_tab
+						li.active
+							a href="#listing-pictures" data-toggle="tab" = "Photos (#{@images.count})"
+						li
+							a href="#listing-map" data-toggle="tab" Map
+					.tab-content
+						.tab-pane.active#listing-pictures
+							#rental_carousel.carousel.slide
+									.carousel-inner
+										- if @images.present?
+											- active = 'active'
+											- for image in @images do
+												.item class="#{active}"
+													center = image_tag image.url(:carousel)
+													- active = nil
+										- else
+											.item.active
+												center = image_tag noimages_large
+									- if @images.present? && @images.count > 1
+										a.carousel-control.left href="#rental_carousel" data-slide="prev" &lsaquo;
+										a.carousel-control.right href="#rental_carousel" data-slide="next" &rsaquo;
+						.tab-pane#listing-map
+							#singlemap_canvas.img-polaroid.google-maps
+							=render '/layouts/singlemap'
+				.well
+					.row
+						h4 Description
+						p = @property.description	
+					- if @property.graduate_only
+						.row
+							#grad-only
+								em Note: This property is only available to graduate students. 
+					.row
+						/.span4
+						.span4.features-container
+							h4 Features
+							.rental_information
+								table.table.table-striped.table-bordered
+									tr
+										td Rent
+										td.rental-tag
+											.data = @rental.pretty_rent
+											span.tag per month
+									- if @property.property_type == 'rentals' && @rental.bedrooms > 10
+										tr
+											td Rent per bedroom
+											td.rental-tag
+												.data = @rental.pretty_rent_per_bedroom
+												span.tag per month 
+									tr
+										td Distance to Campus
+										td.rental-tag
+											.data = (@property.pretty_distance_to_school(@school.id))[0..-4]
+											span.tag miles
+									- if @property.property_type == 'sublets'
+										tr
+											td Room Size
+											td.rental-tag
+												.data = @rental.size
+												span.tag sq ft
+										tr
+											td Roommates
+											td.rental-tag
+												.data = @rental.roommates
+									- else
+										tr
+											td Bedrooms
+											td.rental-tag
+												.data = @rental.pretty_bedrooms
+										tr
+											td Bathrooms
+											td.rental-tag
+												.data = @rental.pretty_bathrooms
+									tr
+										td Lease Dates
+										td.rental-tag
+											.data = @rental.pretty_lease
+									- if @property.graduate_only
+										tr
+											td Grad Students Only?
+											td.rental-tag
+												.data Yes
+						.span3.amenities-container
+							h4 Amenities
+							.rental_amenities
+								.data
+									- if @property.water_included
+										i.icon-ok-circle
+										span &nbsp;Water included in rent
+									- else
+										i.icon-ban-circle
+										span &nbsp;Water not included in rent
+								.data
+									- if @property.electric_included
+										i.icon-ok-circle
+										span &nbsp;Electricity included in rent
+									- else
+										i.icon-ban-circle
+										span &nbsp;Electricity not included in rent
+								.data
+									- if @property.gas_included
+										i.icon-ok-circle
+										span &nbsp;Gas included in rent
+									- else
+										i.icon-ban-circle
+										span &nbsp;Gas not included in rent
+								.data
+									- if @property.air_conditioning
+										i.icon-ok-circle
+										span &nbsp;Air conditioning
+									- else
+										i.icon-ban-circle
+										span &nbsp;No air conditioning
+								.data
+									- if @property.central_air
+										i.icon-ok-circle
+										span &nbsp;Central air
+									- else
+										i.icon-ban-circle
+										span &nbsp;No central air
+								.data
+									- if @property.television
+										i.icon-ok-circle
+									- else
+										i.icon-ban-circle
+									span &nbsp;Cable TV
+								.data
+									- if @property.internet
+										i.icon-ok-circle
+									- else
+										i.icon-ban-circle
+									span &nbsp;Broadband Internet
+								.data
+									- if @property.parking
+										i.icon-ok-circle
+										span &nbsp;On-site parking
+									- else
+										i.icon-ban-circle
+										span &nbsp;No on-site parking
+								.data
+									- if @property.pets_allowed
+										i.icon-ok-circle
+										span &nbsp;Pets allowed
+									- else
+										i.icon-ban-circle
+									span &nbsp;Pets not allowed
+								.data
+									- if @property.smoking
+										i.icon-ok-circle
+										span &nbsp;Smoking is allowed
+									- else
+										i.icon-ban-circle
+										span &nbsp;Smoking not allowed
+								.data
+									- if @property.pets_allowed
+										i.icon-ok-circle
+										span &nbsp;Furnished
+									- else
+										i.icon-ban-circle
+										span &nbsp;Not furnished
+			.span3
+				.pull-left.well.contact-container
+					- if @property.property_type == 'rentals'
+						h4 Contact #{@property.account.name}
+					- else
+						h4 Contact #{@property.account.users.first.first_name} 
+					= render 'messages/message_form', messageable_id: @rental.id, messageable_type: "UnitClass", school_code: @school.code	
+				.pull-left.well.similar-listings-container
+					h4 Similar Listings
+					- if @similar_listings.count > 0
+						.similar-listings
+							- for rental in @similar_listings do
+								= render 'similar_listing', rental: rental, school: @school
+					- else
+						p There are currently no other listings similar to this property.
+			.clearfix
+
+javascript:
+	$(function () { $('#picture_map_tab a:first').tab('show');})
+
+
+
+
+

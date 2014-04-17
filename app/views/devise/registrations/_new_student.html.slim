@@ -1,0 +1,23 @@
+.signup
+  = form_for :user, url: user_registration_url, html:{class:'form-horizontal', autocomplete: :off} do |f|
+    .control-group
+      = f.label :first_name, class:'control-label'
+      .controls = f.text_field :first_name
+    .control-group
+      = f.label :last_name, class:'control-label'
+      .controls = f.text_field :last_name
+    .control-group
+      = f.label :code, 'Your school', class:'control-label'
+      .controls = f.select :code, options_for_select(schools), {include_blank: true}, class:'signupselect'
+    .control-group
+      = f.label :email, '.edu email address', class:'control-label'
+      .controls = f.email_field :email
+    .control-group
+      = f.label :password, class:'control-label'
+      .controls = f.password_field :password
+    .control-group
+      = f.label :password_confirmation, 'Retype password', class:'control-label'
+      .controls = f.password_field :password_confirmation
+    = f.hidden_field :role, value:'student'
+    = f.submit "Sign up", class:'btn btn-primary btn-large signupbutton'
+  p.confirm_terms By signing up, you confirm that you accept the uHoused #{link_to 'terms of use', legal_terms_url} and #{link_to 'privacy policy', legal_privacy_url}.

@@ -1,0 +1,68 @@
+.container
+	.row
+		.span12
+			.listing_header
+				ul.listing_links
+					li.return_to_listings = link_to listings_url do
+						i.icon-arrow-left
+						span Return to your listings
+					- if @roommate_listing.active
+						li = link_to "Deactivate Profile", deactivate_roommate_listing_url, class: 'btn btn-primary'
+					- else
+						li = link_to "Activate Profile", activate_roommate_listing_url, class: 'btn btn-primary'
+					li = link_to "Delete Profile", roommate_profile_url, method: :delete, class: 'btn btn-danger'
+				h2.saving
+					span Saving <i class="icon-spinner.icon-spin"></i>
+				h2.saved Saved!
+				h2.not_saved Not Saved
+				h1 Roommate Profile
+
+				h3 Profile Picture
+				p Upload as many pictures as you like. The first image will be the profile's cover photo.
+				/ Note: I need to add an image uploader here.
+
+				ul.listing_imgs
+					- if @roommate_listing.images.present?
+						- @roommate_listing.images.order(:id).each do |i|
+							= render '/images/thumb_listing', image: i
+					- else
+						li.noimages You haven't posted any images yet.
+	.row
+		.listing_form
+				= form_for @roommate_listing, url: roommate_listing_url, remote: :true do |f|
+					.span3
+						h2 Listing Info
+						= f.label :title, 'Listing Title'
+						= f.text_field :title, class:'remoteform'
+						= f.label :description, 'Listing Description'
+						= f.text_area :description, rows: 10, class:'remoteform'
+					.span4.offset1
+						h2 Describe Yourself
+						= f.label :ideal_rent, 'Ideal Monthly Rent'
+						= f.number_field :ideal_rent, class:'remoteform'
+						= f.label :gender
+						= f.select :gender, options_for_select(RoommateListing.genders, @roommate_listing.gender), {include_blank: true}, class:'remoteform'
+						= f.label :age
+						= f.number_field :age, class:'remoteform'
+						= f.label :grad_year, 'Graduation Year'
+						= f.number_field :grad_year, class:'remoteform'
+						= f.label :cleanliness
+						= f.select :cleanliness, options_for_select(RoommateListing.cleanliness, @roommate_listing.cleanliness), {include_blank: true}, class:'remoteform'
+						= f.label :social, 'Sociability'
+						= f.select :social, options_for_select(RoommateListing.social, @roommate_listing.social), {include_blank: true}, class:'remoteform'
+						= f.label :fb_link, 'URL For Facebook Profile (optional)'
+						= f.text_field :fb_link, class:'remoteform'
+					.span4
+						h2 Ideal Roommate
+						= f.label :pref_gender, 'Gender'
+						= f.select :pref_gender, options_for_select(RoommateListing.pref_genders, @roommate_listing.pref_gender), {}, class:'remoteform'
+						= f.label :pref_age, 'Age'
+						= f.number_field :pref_age, class:'remoteform'
+						= f.label :pref_cleanliness, 'Cleanliness'
+						= f.select :pref_cleanliness, options_for_select(RoommateListing.pref_cleanliness, @roommate_listing.pref_cleanliness), {}, class:'remoteform'
+						= f.label :pref_social, 'Sociability'
+						= f.select :pref_social, options_for_select(RoommateListing.pref_social, @roommate_listing.pref_social), {}, class:'remoteform'
+						= f.label :pref_pets, 'Pets'
+						= f.select :pref_pets, options_for_select(RoommateListing.pref_pets, @roommate_listing.pref_pets), {}, class:'remoteform'
+						= f.label :pref_smoking, 'Smoking'
+						= f.select :pref_smoking, options_for_select(RoommateListing.pref_smoking, @roommate_listing.pref_smoking), {}, class:'remoteform'

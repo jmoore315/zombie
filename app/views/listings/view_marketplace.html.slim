@@ -1,0 +1,57 @@
+.container
+	= render 'school_header', school: @school
+	.row
+		.span3
+			.marketplace_sidebar
+				h3 Search
+				= form_tag view_marketplace_url(school_code: @school.code), method: :get do
+					p = select_tag :sort_by, options_for_select(MarketplaceItem.orders_select, @sort_by)
+					#prices
+						.pull-left Min Price: $<span class="price_min">#{@price_min}</span>
+						.pull-right Max Price: $<span class="price_max">#{@price_max}</span>					
+					#price_slider
+					= label_tag :category do
+						= select_tag :category, options_for_select(MarketplaceItem.categories_select, @category), prompt: 'Any Category'
+					= label_tag :condition do
+						= select_tag :condition, options_for_select(MarketplaceItem.conditions_select, @condition), prompt: 'Any Condition'
+					= hidden_field_tag :price_min, @price_min, class:'price_min'
+					= hidden_field_tag :price_max, @price_max, class:'price_max'
+					= hidden_field_tag :school_code, @school.code
+					= submit_tag 'Search', class:'btn btn-primary'
+					= link_to 'show all', view_marketplace_url(school_code: @school.code), class:'btn clear_rental_search pull-right'
+		.span9
+			.rentals
+				- if @items.empty?
+					h2 WOMP WOMP WOMP
+					h3 There are no items that meet your search criteria.
+				- for item in @items
+					.rental
+						= link_to view_item_url(id: item.id) do
+							.rental_image
+								- if item.first_image_url
+									= image_tag item.first_image_url, class:'img-polaroid'
+								- else
+									= image_tag noimages_thumb, class:'img-polaroid'
+							.rental_info
+								.rental_address = item.name
+								.rental_unit
+									.rental_attribute.rent
+										.data $#{item.price}
+										.tag price
+									.rental_attribute.category
+										.data = item.category
+										.tag category
+									.rental_attribute.subcategory
+										.data	= item.subcategory
+										.tag subcategory
+									.rental_attribute.condition
+										.data = item.condition
+										.tag condition
+				.pagination style="#{'visibility: hidden;' if @pages <= 1}"
+					ul
+						- if @page != 1
+							li = link_to view_marketplace_url(school_code: @school.code, page: @page-1, price_min: @price_min, price_max: @price_max, category: @category, subcategory: @subcategory, condition: @condition, sorty_by: @sort_by)
+						- for page in 1..@pages do
+							li = link_to view_marketplace_url(school_code: @school.code, page: page, price_min: @price_min, price_max: @price_max, category: @category, subcategory: @subcategory, condition: @condition, sorty_by: @sort_by)
+						- if @page != @pages
+							li = link_to view_marketplace_url(school_code: @school.code, page: @page+1, price_min: @price_min, price_max: @price_max, category: @category, subcategory: @subcategory, condition: @condition, sorty_by: @sort_by)

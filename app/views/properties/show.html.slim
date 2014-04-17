@@ -1,0 +1,113 @@
+- if @current_account.role == 'student'
+	- content_for :for_head do
+		meta property="og:title" content="a sublet on uHoused"
+		meta property="og:type" content="website"
+		meta property="og:description" content="Check out a new sublet I've posted."
+		- if @property.images.present?
+			meta property="og:image" content="#{@property.images.order(:id).first.url}"
+
+.container
+	.row
+		.span12
+			.listing_header
+				ul.listing_links
+					li.return_to_listings
+						= link_to listings_url do
+							i.icon-arrow-left
+							span Return to your listings
+					- if @property.active
+						li = link_to "Deactivate #{@property.property_type.singularize}", deactivate_property_url(@property.id), class:'btn btn-primary'
+					- else
+						li = link_to "Activate #{@property.property_type.singularize}", activate_property_url(@property.id), class:'btn btn-primary'
+					li = link_to "Delete #{@property.property_type.singularize}", property_url(@property.id), method: :delete, class:'btn btn-danger'
+					- if @current_account.role == 'student'
+						li: #fb-like data-href="http://www.uhoused.com/properties/#{@property.unit_classes.first.id}" data-send="false" data-layout="button_count" data-width="200" data-show-faces="false" data-font="verdana" data-action="recommend" data-id="#{@property.id}"
+				h2.saving Saving <i class="icon-spinner icon-spin"></i>
+				h2.saved Saved!
+				h2.not_saved Not Saved
+				- if @property.has_full_address?
+					h1 = @property.pretty_address
+				- elsif @property.property_type == 'rentals'
+					h1 New Rental
+				- elsif @property.property_type == 'sublets'
+					h1 New Sublet
+			h3 Images
+			p Upload as many pictures as you like. The first image will be the property's cover photo.
+			= render 'images/upload_images', imageable: @property
+
+			ul.listing_imgs
+				- if @property.images.present?
+					- for image in @property.images.order(:id) do
+						= render '/images/thumb_listing', image: image
+				- else
+					li.noimages You haven't posted any images yet.
+
+	.row
+		.span4
+			.address_form
+				h3 Address
+				= form_for @property, url: property_url(@property.id), remote: true do |f|
+					= f.label :street_address
+					= f.text_field :street_address, class:'remoteform'
+					= f.label :city
+					= f.text_field :city, class:'remoteform'
+					= f.label :state
+					= f.select :state, options_for_select(states, @property.state), {}, class:'prop_state remoteform'
+					= f.label	:postal_code
+					= f.text_field :postal_code, class:'remoteform'
+		.span4
+			.amenities_form
+				h3 Amenities
+				= form_for @property, url: property_url(@property.id), remote: true do |f|
+					= f.label	:water_included, class:'checkbox' do
+						= f.check_box :water_included, class:'remoteform'
+						span Is water included?
+					= f.label	:electric_included, class:'checkbox' do
+						= f.check_box :electric_included, class:'remoteform'
+						span Is electric included?
+					= f.label	:gas_included, class:'checkbox' do
+						= f.check_box :gas_included, class:'remoteform'
+						span Is gas included?
+					= f.label	:air_conditioning, class:'checkbox' do
+						= f.check_box :air_conditioning, class:'remoteform'
+						span Does the #{@property.property_type} have air conditioning?
+					= f.label	:television, class:'checkbox' do
+						= f.check_box :television, class:'remoteform'
+						span ... cable TV?
+					= f.label	:internet, class:'checkbox' do
+						= f.check_box :internet, class:'remoteform'
+						span ... high-speed Internet?
+					= f.label	:parking, class:'checkbox' do
+						= f.check_box :parking, class:'remoteform'
+						span ... onsite parking?
+					= f.label	:pets_allowed, class:'checkbox' do
+						= f.check_box :pets_allowed, class:'remoteform'
+						span Are pets allowed?
+					= f.label	:smoking, class:'checkbox' do
+						= f.check_box :smoking, class:'remoteform'
+						span Is smoking allowed?
+					= f.label	:furnished, class:'checkbox' do
+						= f.check_box :furnished, class:'remoteform'
+						span Is the #{@property.property_type} furnished?
+					= f.label	:graduate_only, class:'checkbox' do
+						= f.check_box :graduate_only, class:'remoteform'
+						span Is the #{@property.property_type} for graduate students only?
+		.span3
+			.description_form
+				h3 Description
+				= form_for @property, url: property_url(@property.id), remote: true do |f|
+					= f.text_area :description, rows:12, placeholder: "Write a brief description of the #{@property.property_type}.", class:'remoteform'
+	.row
+		.span12
+			#unit_fields
+				h3 = "#{@property.property_type == 'rentals' ? 'Units' : 'Unit'}"
+				- for unit in @property.unit_classes do
+					= render 'unit_class_fields', unit: unit, property_type: @property.property_type
+			.clearfix
+			- if @property.property_type == 'rentals'
+				= form_tag add_unit_url, remote: true do
+					= hidden_field_tag :property, @property.id
+					= submit_tag "add another unit", class:'btn btn-primary'
+
+javascript:
+	$('select.prop_state').select2('val','<%= @property.state %>');

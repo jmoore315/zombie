@@ -1,0 +1,38 @@
+div class="school_location_#{location.id}" style="padding: 0;"
+		.location_image
+			- if location.first_image_url
+				= image_tag location.first_image_url, class:'img-polaroid'
+			- else
+				= image_tag noimages_thumb, class:'img-polaroid'
+		.location_info
+			.location_address 
+				span class="prop_type" = "#{location.property_type.singularize.capitalize}: "
+				span = "#{location.street_address} (#{location.property_schools.first.distance.round(2)} mi. to campus)"
+			location_units
+				- location.unit_classes.each do |unit|
+					.location_unit
+						= link_to view_property_url(id: unit.id, school_code: school.code, property_type: location.property_type)
+							- if location.property_type == 'rentals'
+								- if unit.bedrooms == 0
+									.location_unit_attribute.studio
+										.data Studio
+										.tag Unit type
+								- else
+									.location_unit_attribute.br-bath
+										.data = "#{unit.pretty_bedrooms}BR/#{unit.pretty_bathrooms}BTH"
+										.tag unit type
+							- else
+								- if unit.roommates == 0
+									.location_unit_attribute.no_roommates
+										.data = "Single bdrm"
+										.tag Unit type
+								- else
+									.location_unit_attribute.roommates
+										.data = "Shared bdrm"
+										.tag Unit type
+							.location_unit_attribute.rent
+								.data = "$" + "#{unit.price}"
+								.tag per month
+							.location_unit_attribute.lease
+								.data = unit.pretty_lease
+								.tag lease dates

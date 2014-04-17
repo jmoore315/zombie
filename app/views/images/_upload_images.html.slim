@@ -1,0 +1,2 @@
+= s3_uploader_form callback_url: images_url, callback_param: "image[image_url]", callback_method: "POST", key: "uploads/#{imageable.uuid}/{timestamp}_{unique_id}_${filename}", key_starts_with: "uploads/#{imageable.uuid}/", ssl: true, id: "imageuploader" do
+	= file_field_tag :file, multiple: true

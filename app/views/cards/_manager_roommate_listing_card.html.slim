@@ -1,0 +1,26 @@
+li class="property roommate_listing"
+	.pull-right
+		.manage_status
+			- if roommate_listing.active
+				.property_active Active
+				= link_to 'Deactivate', deactivate_roommate_listing_url, class:'btn btn-primary'
+			- else
+				.property_inactive Inactive
+				= link_to 'Activate', activate_roommate_listing_url, class:'btn btn-primary'
+			= link_to 'Delete', roommate_listing_url, method: :delete, class:'btn btn-danger'
+			.fb-like href="http://www.uhoused.com/#{roommate_listing.account.code}/roommate_listings/#{roommate_listing.id}" data-send="false" data-layout="button_count" data-width="200" data-show-faces="false" data-font="verdana" data-action="recommend" data-id="#{roommate_listing.id}"
+	div
+		= link_to roommate_listing_url do
+			.prop_img
+				- if roommate_listing.images.present?
+					= image_tag roommate_listing.images.order(:id).first.url(:thumb), class:'img-polaroid'
+				- else
+					= image_tag noimages_thumb, class:'img-polaroid'
+			.property_info
+				.property_address Roommate Profile
+				.property_school = @current_account.school.name
+				.property_units
+					.property_unit
+						.property_unit_attribute
+							.data
+							.tag

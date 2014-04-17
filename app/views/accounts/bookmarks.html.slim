@@ -1,0 +1,131 @@
+.container
+	.span12
+		.page-header
+			h3 My Bookmarks
+		.row
+			h4 Rentals
+			- if @rental_bookmarks.empty?
+				p You have not bookmarked any rental listings.
+			- else
+				- @rental_bookmarks.each do |bookmark|
+					- rental = bookmark.bookmarkable
+					- property = rental.property
+					.rental id="bookmark_#{bookmark.id}"
+						.pull-right.manage_status
+							= link_to 'Delete', delete_bookmark_url(bookmark.id), method: :delete, remote: true, class:'btn btn-danger'
+						= link_to view_property_url(school_code: School.find(bookmark.school_id).code, id: rental.id, property_type: 'rentals') do
+							.rental_image
+								- if property.first_image_url
+									= image_tag property.first_image_url, class:'img-polaroid'
+								- else
+									= image_tag noimages_thumb, class:'img-polaroid'
+							.rental_info id="#{rental.id}"
+								.rental_address = property.street_address
+								.rental_unit.rent
+									.rental_attribute.rent
+										.data = rental.pretty_rent
+										.tag per month
+									.rental_attribute.distance
+										.data = "#{property.property_schools.first.distance.round(2)} mi."
+										.tag to campus
+									- if rental.pretty_bedrooms == 'Studio'
+										.rental_attribute.studio
+											.data = rental.pretty_bedrooms
+											.tag beds
+									- else
+										.rental_attribute.beds
+											.data = rental.pretty_bedrooms
+											.tag beds
+										.rental_attribute.baths
+											.data = rental.pretty_bathrooms
+											.tag baths
+									.rental_attribute.lease
+										.data = rental.pretty_lease
+										.tag lease from - until
+		.row
+			h4 Sublets
+			- if @sublet_bookmarks.empty?
+				p You have not bookmarked any sublet listings.
+			- else
+				- @sublet_bookmarks.each do |bookmark|
+					- sublet = bookmark.bookmarkable
+					- property = sublet.property
+					.rental id="bookmark_#{bookmark.id}"
+						.pull-right.manage_status
+							= link_to 'Delete', delete_bookmark_url(bookmark.id), method: :delete, remote: true, class:'btn btn-danger'
+						= link_to view_property_url(school_code: School.find(bookmark.school_id).code, id: sublet.id, property_type: 'sublets') do
+							.rental_image
+								- if property.first_image_url
+									= image_tag property.first_image_url, class:'img-polaroid'
+								- else
+									= image_tag noimages_thumb, class:'img-polaroid'
+							.rental_info id="#{sublet.id}"
+								.rental_address = property.street_address
+								.rental_unit.rent
+									.rental_attribute.rent
+										.data = sublet.pretty_rent
+										.tag per month
+									.rental_attribute.distance
+										.data = "#{property.property_schools.first.distance.round(2)} mi."
+										.tag to campus
+									.rental_attribute.attribute_size
+										.data = sublet.size
+										.tag sq. ft.
+									.rental_attribute.attribute_roommates
+										.data = sublet.roommates
+										.tag roommates
+									.rental_attribute.lease
+										.data = sublet.pretty_lease
+										.tag lease from - until
+		.row
+			h4 Marketplace Items
+			- if @item_bookmarks.empty?
+				p You have not bookmarked any marketplace items.
+			- else
+				- @item_bookmarks.each do |bookmark|
+					- item = bookmark.bookmarkable
+					.rental id="bookmark_#{bookmark.id}"
+						.pull-right.manage_status
+							= link_to 'Delete', delete_bookmark_url(bookmark.id), method: :delete, remote: true, class:'btn btn-danger'
+						= link_to view_item_url(school_code: School.find(bookmark.school_id).code, id: item.id) do
+							.rental_image
+								- if item.first_image_url
+									= image_tag item.first_image_url, class:'img-polaroid'
+								- else
+									= image_tag noimages_thumb, class:'img-polaroid'
+							.rental_info
+								.rental_address = item.name
+								.rental_unit
+									.rental_attribute.rent
+										.data $#{item.price}
+										.tag price
+									.rental_attribute.category
+										.data = item.category
+										.tag category
+									.rental_attribute.subcategory
+										.data	= item.subcategory
+										.tag subcategory
+									.rental_attribute.condition
+										.data = item.condition
+										.tag condition
+		.row
+			h4 Roommates
+			- if @roommate_bookmarks.empty?
+				p You have not bookmarked any roommate profiles.
+			-else
+				- @roommate_bookmarks.each do |bookmark|
+					- roommate = bookmark.bookmarkable
+					.rental id="bookmark_#{bookmark.id}"
+						.pull-right.manage_status
+							= link_to 'Delete', delete_bookmark_url(bookmark.id), method: :delete, remote: true, class:'btn btn-danger'
+						= link_to view_roommate_listing_url(school_code: School.find(bookmark.school_id).code, id: roommate.id) do
+							.rental_image
+								- if roommate.images.present?
+									= image_tag roommate.images.order(:id).first.url(:thumb).to_s, class:'img-polaroid'
+								- else
+									= image_tag no_image_available_thumb, class:'img-polaroid'
+							.rental_info
+								.rental_address = roommate.title
+								.rental_unit
+									.rental_attribute
+										.tag = roommate.description

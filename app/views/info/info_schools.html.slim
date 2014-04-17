@@ -1,0 +1,46 @@
+.container 
+	.static-pages-container
+		.row
+			= render 'info/info_sidebar'
+			.span9 
+				.static-pages-content.well
+					.page-header
+						h3 Information for School Administrators
+					h4 Become a part of the off-campus process
+					.info-details-container
+						.info-icon-box
+							i.icon-group
+						.info-text-box
+							p Our partner schools are given the data and controls they need to improve students' off-campus housing experience. School administrators can access and export market and site usage data, they can block postings from predatory landlords, and they can interact with users. In exchange, we ask the school to promote uHoused as its official off-campus housing website.
+						.clearfix							
+					h4 Make students' lives easier
+					.info-details-container
+						.info-icon-box
+							i.icon-thumbs-up
+						.info-text-box
+							p We put students first. In contrast to other off-campus housing resources, uHoused gives students the information they care most about, like distance to campus. Furthermore, we cater to all types of students: undergraduate and graduate, local and international. 
+						.clearfix
+					h4 Provide safety and security to students
+					.info-details-container
+						.info-icon-box
+							i.icon-lock
+						.info-text-box
+							p All students should to be assured of our site's integrity and authenticity. That's why we monitor all uHoused listings and require verified .edu email addresses for users posting sublets, marketplace items, and roommate profiles. We also take privacy seriously - all connections use 256-bit TLS encryption, and sensitive password data is encrypted to protect against would-be data thieves.
+						.clearfix
+					/h4 Current Partners
+					/.info-details-container
+						.info-icon-box
+							i.icon-flag
+						.info-text-box
+							p Link to view partner schools
+						.clearfix
+					h4 Bring uHoused to your school
+					.info-details-container
+						.info-icon-box.home-icon-box
+							i.icon-home
+						.info-text-box 
+							p 
+								| uHoused is always looking for new schools to partner with. If we have not yet launched at your school and you are interested in our website, please 
+								= link_to("contact us", about_contact_path)
+								| . We can have a page up for your school immediately.
+					.clearfix

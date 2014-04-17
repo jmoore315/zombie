@@ -1,0 +1,22 @@
+.sendmsg
+	= form_for :message, url: send_message_url, remote: true do |f|
+		= f.hidden_field :messageable_id, value: messageable_id
+		= f.hidden_field :messageable_type, value: messageable_type
+		= f.hidden_field :school_code, value: school_code
+		- if user_signed_in?
+			= f.label :sender_email, 'Your Email'
+			= f.text_field :sender_email, value: "#{current_user.email}"
+			= f.label :sender_name, 'Your Name'
+			= f.text_field :sender_name, value: "#{current_user.first_name} #{current_user.last_name}"
+			= f.label :sender_telephone, 'Your Phone Number'
+			= f.text_field :sender_telephone, value: "#{@current_account.telephone}"
+		- else
+			= f.label :sender_email, 'Your Email'
+			= f.text_field :sender_email
+			= f.label :sender_name, 'Your Name'
+			= f.text_field :sender_name
+			= f.label :sender_telephone, 'Your Phone Number'
+			= f.text_field :sender_telephone
+		= f.label :content, "Message Content:"
+		= f.text_area :content, rows: 10, value: "Hi, \nI found your listing on uHoused and I am interested! Please contact me back so we can arrange a viewing and discuss details. \nThank you!"
+		= f.submit 'Send Message', class: 'btn btn-info'

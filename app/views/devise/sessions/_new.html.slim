@@ -1,0 +1,15 @@
+.login
+	h2 LOG IN
+	= form_for :user, url: user_session_path, html:{class:'horizontal-form'} do |f|
+		.control-group
+			= f.label :email, class:'control-label'
+			.controls = f.email_field :email
+		.control-group
+			= f.label :password, class:'control-label'
+			.controls = f.password_field :password
+		= f.label :remember_me, class:'checkbox' do
+			= f.check_box :remember_me
+			span remember me
+		p = f.submit "Log in", class:'btn btn-primary btn-large'
+		p = link_to "Forgot your password?", new_user_password_url
+		p = link_to "Need confirmation instructions?", new_user_confirmation_url

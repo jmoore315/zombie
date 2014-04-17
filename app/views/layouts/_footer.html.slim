@@ -1,0 +1,34 @@
+#footer
+			.container
+				.row
+					.span2.offset1
+						h5 Information for:
+					.span2.footer-offset
+						h5 Help and Support
+					.span2.footer-offset
+						h5 Company
+					.span2.footer-offset
+						h5 Legal
+				.row#footerlinks
+					.span2.offset1
+						ul
+							li = link_to "Students", info_students_url
+							li = link_to "Landlords", info_landlords_url
+							li = link_to "School Administrators", info_schools_url
+							li = link_to "Parents", info_parents_url
+					.span2.footer-offset
+						ul
+							li = link_to "FAQs", help_url
+							li = link_to "Walkthroughs", help_walkthroughs_url
+							li = link_to "Get Support", help_support_url
+					.span2.footer-offset
+						ul
+							li = link_to "About Us", about_us_url
+							li = link_to "Our Team", about_team_url
+							li = link_to "Contact", about_contact_url
+					.span2.footer-offset
+						ul
+							li = link_to "Terms of Use", legal_terms_url
+							li = link_to "Privacy Policy", legal_privacy_url
+							/li = link_to "Housing Policy", legal_housing_url
+							li#copyright &copy; uHoused, LLC

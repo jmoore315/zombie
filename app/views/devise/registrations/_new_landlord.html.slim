@@ -1,0 +1,26 @@
+.signup
+	= form_for :user, url: user_registration_url, html:{class:'form-horizontal', autocomplete: :off} do |f|
+		.control-group
+			= f.label :company_name, "Company name", class:'control-label'
+			.controls = f.text_field :company_name
+		.control-group
+			= f.label :first_name, class:'control-label'
+			.controls = f.text_field :first_name
+		.control-group
+			= f.label :last_name, class:'control-label'
+			.controls = f.text_field :last_name
+		.control-group
+			= f.label :email, 'Company email', class:'control-label'
+			.controls = f.text_field :email
+		.control-group
+			= f.label :telephone, 'Company telephone', class:'control-label'
+			.controls = f.text_field :telephone
+		.control-group
+			= f.label :password, class:'control-label'
+			.controls = f.password_field :password
+		.control-group
+			= f.label :password_confirmation, 'Retype password', class:'control-label'
+			.controls = f.password_field :password_confirmation
+		= f.hidden_field :role, value:'landlord'
+		= f.submit "Sign up", class:'btn btn-primary btn-large signupbutton'
+	p.confirm_terms By signing up, you confirm that you accept the uHoused #{link_to 'terms of use', legal_terms_url} and #{link_to 'privacy policy', legal_privacy_url}.

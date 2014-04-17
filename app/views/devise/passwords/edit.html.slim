@@ -1,0 +1,10 @@
+.container
+	.row
+		.span8.offset2
+			- if resource.errors.present?
+				.alert.alert-error
+					- resource.errors.full_messages.each do |error|
+						p = error
+	.row
+		.span6.offset3
+			= render "/devise/passwords/edit"

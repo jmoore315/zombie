@@ -1,0 +1,59 @@
+.share_bar
+	.well.dark-well
+		.row
+			.span3
+				button class="btn btn-link" onClick="history.go(-1); return true;" 
+					/this should be an actual back to search results in the future, routing to default rentals page if user is not coming from search  results page
+					i.icon-mail-reply
+					|  Back
+			.pull-right
+				.span3
+					#bookmark_button
+						- if @current_account && @current_account.role == 'student'
+							- if @bookmark
+								= render 'bookmarks/unbookmark_button', bookmark_id: @bookmark.id
+							- else
+								= render 'bookmarks/bookmark_button', school_id: school_id, bookmarkable: bookmarkable, bookmarkable_type: bookmarkable_type
+						- elsif @current_account
+							.btn.btn-success#bookmark-non-student
+								i.icon-star
+								|  Bookmark
+						- else
+							.btn.btn-success#bookmark-no-account
+								i.icon-star
+								|  Bookmark
+
+				.span3.facebook-share
+					= link_to "https://www.facebook.com/sharer.php?u=https://#{request.host + request.fullpath}", target:'_blank', class:'btn btn-facebook' do
+						.icon-container
+							span.icon-stack
+								i.icon-sign-blank.icon-stack-base
+								i.icon-facebook-sign
+						strong
+							| Share
+				.span3.twitter-share
+					= link_to "https://twitter.com/share?url=https://#{request.host + request.fullpath}", target: '_blank', class:'btn btn-twitter' do
+						.icon-container
+							i.icon-twitter
+						|  Tweet
+				.span3
+					= link_to "mailto:?subject=#{subject}&body=https://#{request.host + request.fullpath}", class: 'btn btn-email' do
+						i.icon-envelope-alt
+						|  Email
+				.span3
+					= link_to 'Report', '#', class: 'btn btn-danger'
+
+#bookmark-non-student-modal.modal.hide tabindex="-1" role="dialog"
+	.modal-body.small-modal-body
+		h3 You must have a student account to bookmark this page.
+	.modal-footer
+		button class="btn btn-primary" data-dismiss="modal" Ok
+
+#bookmark-no-account-modal.modal.hide tabindex="-1" role="dialog"
+	.modal-body.small-modal-body
+		h3 You must have a student account to add bookmarks.
+		hr
+		h4 Please sign in or create a student account to bookmark this page.
+	.modal-footer
+		button class="btn btn-primary" data-dismiss="modal" Ok
+

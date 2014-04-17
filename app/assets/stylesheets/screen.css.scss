@@ -1,0 +1,336 @@
+/* In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+
+
+html,
+body { 
+	height: 100%;
+	//font-family: "museo-sans", Helvetica, serif;
+  margin: 0;
+  font-size: 14px;
+  line-height: 20px;
+  //color: #333333;
+  background-color: #FFFFFF;
+ // background-color: rgb(245, 245, 245);
+
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #2c3e50;
+ // background-color: orange;
+}
+
+form, .dropdown {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+#info-section {
+		background-color: rgb(245, 245, 245);
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	margin: 0 auto -190px;
+}
+
+#push,
+#footer { 
+	height: 160px;
+	margin-top: 30px;
+}
+#push {
+	background-color: inherit;
+}
+
+
+#footer {
+	background-color: white;
+	border-top: 1px solid #eeeeee;
+	padding-top: 20px;
+	h5 {
+		margin: 0; 
+		font-size: 0.9em; 
+		border-bottom: solid 1px #dcdcdc; 
+		color: #9A9A9A;
+		font-weight: normal;
+	}
+	ul {margin: 0;}
+	a {color: #1d95cb; font-size: 0.85em; }
+
+}
+
+.fixed {
+	position: fixed;
+	margin-top: -107px;
+	margin-bottom: 200px;
+}
+.sidebar-unfixed {
+	margin-top:812px;
+	margin-left:1px;
+}
+.sidebar-fixed-up {
+	margin-top: 100px;
+}
+
+.navbar-inner {
+	.navbar-form{
+		.dropdown-menu {
+		margin-top: 12px;
+		}
+	}
+	.pull-right {
+		.dropdown-menu {
+			margin-top: 1px;
+		}
+	}
+	#login {
+		font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	}
+}
+
+.verticalspace { height: 30px; }
+.dropdown-menu .login { margin: 15px; }
+.account_dropdown { font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
+.modal { width: 512px; left: 50%; margin-left: -257px;}
+.modal-backdrop {background-color: rgba(0, 0, 0, 0.6);}
+.modal-body {height: 500px; max-height: 475px;}
+.small-modal-body { height: 160px; }
+.signup, #standalone_login {
+	width: 481px;
+	input[type=email], input[type=password], input[type=text] {width: 250px;}
+	.signupselect {width: 264px; padding-bottom: 12px; height: 30px;}
+	.signupbutton {float:right; margin-right: 40px;}
+	.confirm_terms {margin-left: 40px; margin-right: 10px;}
+}
+
+.reset_password {
+	input {width: 95%;}
+	input[type=submit] {width: 70%}	
+}
+
+.icon-red { color: #B22222; }
+
+.success { display:none; }
+textarea { resize: none;}
+
+.carousel {
+	margin-top: 0px;
+	background: #111;
+	height: 450px;
+	img { max-height: 450px; }
+}
+
+textarea {width: 100%;}
+
+.footer-offset {
+	margin-left: 75px;
+}
+
+#copyright {
+	color: #555;
+	font-size: 0.9em;
+}
+
+.dark-hr {
+	border-color: #cccccc;
+}
+
+
+
+.white-bg {
+	background-color:white;
+	margin-top: -15px;
+	padding-top: 15px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.site-well {
+
+}
+
+.school-picker {
+	background-color: black;
+}
+
+
+//*****
+//NAVBAR
+//*****
+
+.navbar-inner form{
+	.school-picker{
+		width: 250px;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		border-right: none;
+		border: none;
+
+	}
+	.school-picker:active, .school-picker:focus {
+  		border: 1px solid #cccccc;
+  		border-right: none;
+  		border: none;
+	}
+	.dropdown-menu {
+		font-size: 13px;
+		:hover {
+			background-color: #4395d9;
+		}
+		.active > a { background-color: #4395d9; }
+		min-width: 262px;
+		margin-left: 3px;
+
+	}
+	ul {
+	}
+	li {
+		margin-left: 0;
+		padding-left: 0;
+		a {
+			padding: 10px 10px;
+		}
+	}
+}
+
+.navbar-inner {
+	min-width: 980px;
+	//in the future this navbar should be changed so that certain elements dissapear before others on page resize'
+	//also, navbar should have a different min width for non signed in users
+	ul {
+		display: hidden;
+	}
+}
+
+#choose_school_btn {
+	font-size: 12px;
+	margin-left: -5px;
+	border-left: none;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-color: #cccccc;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+		box-shadow: none;
+
+}
+
+
+
+/***
+	CUSTOM BUTTONS
+***/
+
+.btn-yellow {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #fff33f;
+  *background-color: #ffcd30;
+  background-image: -moz-linear-gradient(top, #cbad27, #ffcd30);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff33f), to(#ffcd30));
+  background-image: -webkit-linear-gradient(top, #cbad27, #ffcd30);
+  background-image: -o-linear-gradient(top, #cbad27, #ffcd30);
+  background-image: linear-gradient(to bottom, #cbad27, #ffcd30);
+  background-repeat: repeat-x;
+  border-color: #f5b043 #f5b043 #e08e0b;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff39c12', endColorstr='#fff5b043', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-yellow:hover,
+.btn-yellow:focus,
+.btn-yellow:active,
+.btn-yellow.active,
+.btn-yellow.disabled,
+.btn-yellow[disabled] {
+  color: #ffffff;
+  background-color: #cbad27;
+  *background-color: #cbad27;
+}
+
+.btn-yellow:active,
+.btn-yellow.active {
+  background-color: #cbad27 \9;
+}
+
+.btn-custom {
+  background-color: hsl(66, 95%, 54%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f0fb87", endColorstr="#e2f91a");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#f0fb87), to(#e2f91a));
+  background-image: -moz-linear-gradient(top, #f0fb87, #e2f91a);
+  background-image: -ms-linear-gradient(top, #f0fb87, #e2f91a);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f0fb87), color-stop(100%, #e2f91a));
+  background-image: -webkit-linear-gradient(top, #f0fb87, #e2f91a);
+  background-image: -o-linear-gradient(top, #f0fb87, #e2f91a);
+  background-image: linear-gradient(#f0fb87, #e2f91a);
+  border-color: #e2f91a #e2f91a hsl(66, 95%, 48.5%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.36);
+  -webkit-font-smoothing: antialiased;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-left: 20px;
+}
+
+
+
+.landlord-table {
+	th {
+		border: none;
+	}
+	 /*
+	 tbody > tr:nth-child(4n+1) > td,
+	 tbody > tr:nth-child(0) > th {
+  		background-color: #f9f9f9;
+  	}	*/
+	.inner-table {
+		//padding-left: 30px;
+		padding-right: 0;
+		background-color: white;
+		table {
+			margin-left: 10px;
+			margin-right: 10px;
+			margin-top: 10px;
+			width: 652px;
+			border-bottom: 1px solid #dddddd;
+			tr {
+				:first-child {
+					width: 322px;
+				}
+				:nth-child(2) {
+					width: 211px;
+				}
+			}
+			td, th {
+				background-color: rgba(245, 245, 245, 0.2) !important;//white !important;
+				padding-left: 5px;	
+				}
+			th {
+				font-size: 12px;
+				border-bottom: 1px solid gray;
+			}
+		}
+		 td{
+			padding-left: 40px;
+			background-color: rgba(245, 245, 245, 0.2) !important;
+		}
+		
+	}
+	.btn-primary {
+		margin-right: 30px;
+	}
+}
+
+
+
+
+
+
+
+

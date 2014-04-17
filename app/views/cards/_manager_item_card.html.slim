@@ -1,0 +1,32 @@
+li class="property item_#{item.id}"
+	.pull-right
+		.manage_status
+			- if item.active
+				.property_active Active
+				= link_to 'Deactivate', deactivate_item_url(item.id), class:'btn btn-primary'
+			- else
+				.property_inactive Inactive
+				= link_to 'Activate', activate_item_url(item.id), class:'btn btn-primary'
+			= link_to 'Delete', item_url(item.id), method: :delete, class:'btn btn-danger'
+			.fb-like data-href="http://www.uhoused.com/items/#{item.id}" data-send="false" data-layout="button_count" data-width="200" data-show-faces="false" data-font="verdana" data-action="recommend" data-id="#{item.id}"
+	div
+		= link_to item_url(item.id) do
+			.prop_img
+				- if item.images.present?
+					= image_tag item.images.order(:id).first.url(:thumb), class:'img-polaroid'
+				- else
+					= image_tag noimages_thumb, class:'img-polaroid'
+			.property_info
+				.property_address = item.pretty_name
+				.property_school = @current_account.school.name
+				.property_units
+					.property_unit
+						.property_unit_attribute.rent
+							.data = item.pretty_price
+							.tag price
+						.property_unit_attribute.subcategory
+							.data = item.subcategory
+							.tag subcategory
+						.property_unit_attribute.condition
+							.data = item.condition
+							.tag condition

@@ -1,0 +1,48 @@
+.container 
+	.static-pages-container
+		.row
+			= render 'info/info_sidebar'
+			.span9 
+				.static-pages-content.well
+					.page-header
+						h3 Frequently Asked Questions
+					p#faq-note 
+						em Note: In addition to these FAQs we also provide 
+						em = link_to 'walkthroughs for common tasks.', help_walkthroughs_path
+					/.row
+						/h5.faq-section General Questions
+					.row
+						.span4
+							h5.faq-section-title General
+							ul
+								li.faq = link_to "How do I sign up?", faq_url(question: "how_to_sign_up", title: "How do I sign up?"), remote: true
+								li.faq = link_to "What are the benefits of creating an account?", faq_url(question: "benefits_of_account", title: "What are the benefits of creating an account?"), remote: true
+								li.faq = link_to "Who can post on uHoused?", faq_url(question: "who_can_post", title: "Who can post on uHoused?"), remote: true
+						.span4
+							h5.faq-section-title Listings
+							ul
+								li.faq = link_to "What is the difference between deactivating and deleting a listing?", faq_url(question: "difference_between_delete_deactivate", title: "What is the difference between deactivating and deleting a listing?"), remote: true
+								li.faq = link_to "I created a listing, but it is not showing up. Why?", faq_url(question: "listing_not_appearing", title: "I created a listing, but it is not showing up. Why?"), remote: true					
+					.row	
+						.span4
+							h5.faq-section-title Student Questions
+							ul
+								li.faq = link_to "Who can view my listings?", faq_url(question: "who_can_view_listings", title: "Who can view my listings?"), remote: true	
+								li.faq = link_to "How do I post a sublet?", faq_url(question: "how_to_post_sublet", title: "How do I post a sublet?"), remote: true
+								li.faq = link_to "Why can't I post my place as a rental?", faq_url(question: "why_cant_i_post_as_rental", title: "Why can't I post my place as a rental?"), remote: true
+								li.faq = link_to "Why do I have to use my school email address to register?", faq_url(question: "why_school_email", title: "Why do I have to use my school email address to register?"), remote: true
+								li.faq = link_to "Who can see my personal informaton?", faq_url(question: "who_can_see_personal_info", title: "Who can see my personal informaton?"), remote: true
+						.span4
+							h5.faq-section-title Landlord Questions
+							ul
+								li.faq = link_to 'How do I post a rental?', faq_url(question: "post_rental", title: "How do I post a rental?"), remote: true
+								li.faq = link_to "How much does it cost to advertise properties on uHoused?", faq_url(question: "cost_of_posting", title: "How much does it cost to advertise properties on uHoused?"), remote: true
+								li.faq = link_to 'What does uHoused offer that other property advertising sites do not?', faq_url(question: "what_uhoused_offers", title: "What does uHoused offer that other property advertising sites do not?"), remote: true
+#faq_modal.modal.hide tabindex="-1" role="dialog"
+	.modal-header
+	.modal-body
+	.modal-footer
+		button class="btn btn-primary" data-dismiss="modal" Close
+
+
+
