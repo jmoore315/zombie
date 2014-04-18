@@ -19,6 +19,7 @@ gem 'httparty'
 gem 'sidekiq'
 gem 'sinatra'
 
+
 # Gems to replace Rails 3.2 functionality
 # gem 'protected_attributes'
 

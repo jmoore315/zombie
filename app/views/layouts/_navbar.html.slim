@@ -1,7 +1,7 @@
 .navbar.navbar-static-top
 	.navbar-inner
 		= link_to root_url, class:'brand' do
-			= image_tag "https://s3.amazonaws.com/uhoused-admin/images/icon_light_grey.svg", alt:'uHoused Home'
+			= image_tag "/assets/logo.svg", alt:'uHoused Home'
 		- if @show_navbar_search
 			= form_tag choose_school_url, method: :get, class:'navbar-form pull-left' do
 				= text_field_tag 'school', nil, placeholder: 'Choose a school', class:'school-picker', autocomplete:'off'
