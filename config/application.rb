@@ -26,10 +26,7 @@ module Uhoused2
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    config.cache_classes = true
-    config.serve_static_assets = true
-    config.assets.compile = true
-    config.assets.digest = true
+
 
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
