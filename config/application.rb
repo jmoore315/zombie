@@ -26,7 +26,7 @@ module Uhoused2
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    config.assets.initialize_on_precompile = false
+    config.serve_static_assets = true
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
