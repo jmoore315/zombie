@@ -3,6 +3,7 @@ html style="#{"background-color: rgb(245, 245, 245)" if @info_section || @settin
 	head
 		title uHoused
 		= stylesheet_link_tag "application", :media => "all"
+		= stylesheet_link_tag 'application', '"https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic"'
 		= favicon_link_tag "https://s3.amazonaws.com/uhoused-admin/images/new_favicon.ico"
 		= javascript_include_tag "application"
 		= csrf_meta_tags
