@@ -28,6 +28,10 @@ module Uhoused2
     config.filter_parameters += [:password]
     config.serve_static_assets = true
 
+    config.assets.precompile += ["fontawesome-webfont.ttf",
+                         "fontawesome-webfont.eot",
+                         "fontawesome-webfont.svg",
+                         "fontawesome-webfont.woff"]
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,

@@ -4,7 +4,7 @@
 			.span3
 				button class="btn btn-link" onClick="history.go(-1); return true;" 
 					/this should be an actual back to search results in the future, routing to default rentals page if user is not coming from search  results page
-					i.icon-mail-reply
+					i.fa.fa-mail-reply
 					|  Back
 			.pull-right
 				.span3
@@ -16,29 +16,29 @@
 								= render 'bookmarks/bookmark_button', school_id: school_id, bookmarkable: bookmarkable, bookmarkable_type: bookmarkable_type
 						- elsif @current_account
 							.btn.btn-success#bookmark-non-student
-								i.icon-star
+								i.fa.fa-star
 								|  Bookmark
 						- else
 							.btn.btn-success#bookmark-no-account
-								i.icon-star
+								i.fa.fa-star
 								|  Bookmark
 
 				.span3.facebook-share
 					= link_to "https://www.facebook.com/sharer.php?u=https://#{request.host + request.fullpath}", target:'_blank', class:'btn btn-facebook' do
 						.icon-container
-							span.icon-stack
-								i.icon-sign-blank.icon-stack-base
-								i.icon-facebook-sign
+							span.fa.fa-stack
+								i.fa.fa-sign-blank.fa-stack-base
+								i.fa.fa-facebook-square
 						strong
 							| Share
 				.span3.twitter-share
 					= link_to "https://twitter.com/share?url=https://#{request.host + request.fullpath}", target: '_blank', class:'btn btn-twitter' do
-						.icon-container
-							i.icon-twitter
+						.fa-stack
+							i.fa.fa-twitter
 						|  Tweet
 				.span3
 					= link_to "mailto:?subject=#{subject}&body=https://#{request.host + request.fullpath}", class: 'btn btn-email' do
-						i.icon-envelope-alt
+						i.fa.fa-envelope-o
 						|  Email
 				.span3
 					= link_to 'Report', '#', class: 'btn btn-danger'
