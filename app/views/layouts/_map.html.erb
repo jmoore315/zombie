@@ -18,7 +18,7 @@ function initialize() {
           position: new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>),
           map: map,
           //if rentals page, set icons to red, otherwise set to blue
-          icon: 'https://s3.amazonaws.com/uhoused-admin/images/map-markers/red-' + <%= (index+1).to_s() %> + ".png",
+          icon: '/assets/map-icons/red-' + <%= (index+1).to_s() %> + ".png",
           title: "<%= location.street_address %>",
           draggable: false
         });
@@ -28,12 +28,12 @@ function initialize() {
           function() {
             map.panTo(marker_<%= location.id %>.getPosition());       
             //if rentals page, set icon to blue, otherwise set it to red
-            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/blue-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setIcon('/assets/map-icons/blue-' + <%= (index+1).to_s() %> + ".png");
             marker_<%= location.id %>.setZIndex(900);
           },
           function() {
             //if rentals page, set icons to red, otherwise set to blue
-            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/red-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setIcon('/assets/map-icons/red-' + <%= (index+1).to_s() %> + ".png");
             marker_<%= location.id %>.setZIndex(50);
           }
         );
@@ -47,7 +47,7 @@ function initialize() {
           position: new google.maps.LatLng(<%= location.latitude %>, <%= location.longitude %>),
           map: map,
           //if rentals page, set icons to red, otherwise set to blue
-          icon: 'https://s3.amazonaws.com/uhoused-admin/images/map-markers/blue-' + <%= (index+1).to_s() %> + ".png",
+          icon: '/assets/map-icons/blue-' + <%= (index+1).to_s() %> + ".png",
           title: "<%= location.street_address %>",
           draggable: false
         });
@@ -56,12 +56,12 @@ function initialize() {
           function() {
             map.panTo(marker_<%= location.id %>.getPosition());       
             //if rentals page, set icon to blue, otherwise set it to red
-            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/red-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setIcon('/assets/map-icons/red-' + <%= (index+1).to_s() %> + ".png");
             marker_<%= location.id %>.setZIndex(900);
           },
           function() {
             //if rentals page, set icons to red, otherwise set to blue
-            marker_<%= location.id %>.setIcon('https://s3.amazonaws.com/uhoused-admin/images/map-markers/blue-' + <%= (index+1).to_s() %> + ".png");
+            marker_<%= location.id %>.setIcon('/assets/map-icons/blue-' + <%= (index+1).to_s() %> + ".png");
             marker_<%= location.id %>.setZIndex(50);
           }
         );
