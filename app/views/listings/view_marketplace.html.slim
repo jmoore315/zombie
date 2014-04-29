@@ -28,10 +28,11 @@
 					.rental
 						= link_to view_item_url(id: item.id) do
 							.rental_image
-								- if item.first_image_url
+								/- if item.first_image_url
 									= image_tag item.first_image_url, class:'img-polaroid'
-								- else
+								/- else
 									= image_tag noimages_thumb, class:'img-polaroid'
+								= image_tag "http://www.expoinstyle.com/images/product/fullsize/0/2/dining-room-furniture-esf-dining-rooms-poker-dining-table-and-river-chairs-gallery-151.jpg", class:'img-polaroid'
 							.rental_info
 								.rental_address = item.name
 								.rental_unit

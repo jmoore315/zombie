@@ -18,13 +18,17 @@
 							#item_carousel.carousel.slide
 								.carousel-inner
 									- active = 'active'
-									- for image in @images do
+									/- for image in @images do
 											.item class="#{active}"
 												center = image_tag image.url(:carousel)
 												- active = nil
-								- if @images.present? && @images.size > 1
-									a.carousel-control.left href="#item_carousel" data-slide="prev" &lsaquo;
-									a.carousel-control.right href="#item_carousel" data-slide="next" &rsaquo;
+									.item class="active"
+										center = image_tag "http://upload.wikimedia.org/wikipedia/commons/1/17/Dining_table_for_two.jpg"	
+									.item
+										center = image_tag "http://www.expoinstyle.com/images/product/fullsize/0/2/dining-room-furniture-esf-dining-rooms-poker-dining-table-and-river-chairs-gallery-151.jpg"
+								/- if @images.present? && @images.size > 1
+								a.carousel-control.left href="#item_carousel" data-slide="prev" &lsaquo;
+								a.carousel-control.right href="#item_carousel" data-slide="next" &rsaquo;
 				.well.listing-details-well
 					.row.span4#item-info-container
 						h4 Information

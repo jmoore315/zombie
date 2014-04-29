@@ -40,16 +40,18 @@
 						.tab-pane.active#listing-pictures
 							#rental_carousel.carousel.slide
 									.carousel-inner
-										- if @images.present?
+										/- if @images.present?
 											- active = 'active'
 											- for image in @images do
 												.item class="#{active}"
 													center = image_tag image.url(:carousel)
 													- active = nil
-										- else
+										.item class="active"
+											center = image_tag "http://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Seattle_-_Queen_Anne_High_apartment_kitchen.jpg/640px-Seattle_-_Queen_Anne_High_apartment_kitchen.jpg"
+										/- else
 											.item.active
 												center = image_tag noimages_large
-									- if @images.present? && @images.count > 1
+									/- if @images.present? && @images.count > 1
 										a.carousel-control.left href="#rental_carousel" data-slide="prev" &lsaquo;
 										a.carousel-control.right href="#rental_carousel" data-slide="next" &rsaquo;
 						.tab-pane#listing-map

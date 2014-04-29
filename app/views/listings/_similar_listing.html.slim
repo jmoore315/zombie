@@ -3,10 +3,11 @@
 	= link_to view_property_url(id: rental.id, school_code: school.code, property_type: property.property_type) do
 		.rental_address = truncate(property.street_address, length: 28)
 		.rental_image
-			- if property.images.present?
+			/- if property.images.present?
 				= image_tag property.images.order(:id).first.url(:thumb), class:'img-polaroid'
-			- else
+			/- else
 				= image_tag noimages_thumb, class:'img-polaroid'
+			= image_tag "http://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Seattle_-_Queen_Anne_High_apartment_kitchen.jpg/640px-Seattle_-_Queen_Anne_High_apartment_kitchen.jpg", class:'img-polaroid'
 		.rental_info
 			.new_attribute = property.pretty_distance_to_school(@school.id) + " to campus"
 			.new_attribute = rental.pretty_rent + " per month"

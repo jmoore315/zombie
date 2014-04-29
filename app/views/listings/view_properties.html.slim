@@ -44,10 +44,11 @@
 					.rental class="property_#{property.id}"
 						= link_to view_property_url(school_code: @school.code, id: rental.id) do
 							.rental_image
-								- if property.first_image_url
+								/- if property.first_image_url
 									= image_tag property.first_image_url, class:'img-polaroid'
-								- else
+								/- else
 									= image_tag noimages_thumb, class:'img-polaroid'
+								= image_tag "http://www.apartmentwiz.com/images/houston_museum_district_apartments/227_houston_museum_district_apartments_4.jpg", class:'img-polaroid'
 								.rental_number
 									= "#{prop_number}"
 							.rental_info id="#{rental.id}"
